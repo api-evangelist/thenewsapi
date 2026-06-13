@@ -1,0 +1,63 @@
+{
+  "title": "Get Top Stories - Search with Boolean Operators",
+  "description": "Example request and response using the /news/top endpoint with advanced search operators to find business or technology articles.",
+  "request": {
+    "method": "GET",
+    "url": "https://api.thenewsapi.com/v1/news/top",
+    "parameters": {
+      "api_token": "YOUR_API_TOKEN",
+      "search": "artificial+intelligence|machine+learning",
+      "search_fields": "title,description",
+      "locale": "us",
+      "categories": "tech,business",
+      "language": "en",
+      "published_after": "2026-06-01T00:00:00",
+      "sort": "relevance_score",
+      "limit": 2,
+      "page": 1
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "meta": {
+        "found": 3201,
+        "returned": 2,
+        "limit": 2,
+        "page": 1
+      },
+      "data": [
+        {
+          "uuid": "d4e5f6a7-b8c9-0123-defa-234567890123",
+          "title": "Artificial Intelligence Reshapes Enterprise Software Market",
+          "description": "Enterprise software vendors are rapidly integrating AI capabilities as customers demand intelligent automation.",
+          "keywords": "artificial intelligence, enterprise, software, automation",
+          "snippet": "The shift toward AI-powered enterprise applications is accelerating, with major vendors announcing new capabilities every week...",
+          "url": "https://www.forbes.com/2026/06/12/ai-enterprise-software-market",
+          "image_url": "https://imageio.forbes.com/ai-enterprise.jpg",
+          "language": "en",
+          "published_at": "2026-06-12T14:22:00.000000Z",
+          "source": "forbes.com",
+          "categories": ["tech", "business"],
+          "relevance_score": 9.82,
+          "locale": "us"
+        },
+        {
+          "uuid": "e5f6a7b8-c9d0-1234-efab-345678901234",
+          "title": "Machine Learning Models Improve Weather Prediction Accuracy",
+          "description": "Meteorologists are using machine learning to achieve unprecedented accuracy in weather forecasting models.",
+          "keywords": "machine learning, weather, prediction, meteorology, accuracy",
+          "snippet": "New ML-based weather models have demonstrated accuracy improvements of up to 25% compared to traditional numerical weather prediction...",
+          "url": "https://www.scientificamerican.com/article/ml-weather-prediction",
+          "image_url": "https://static.scientificamerican.com/ml-weather.jpg",
+          "language": "en",
+          "published_at": "2026-06-11T09:10:00.000000Z",
+          "source": "scientificamerican.com",
+          "categories": ["tech", "science"],
+          "relevance_score": 9.45,
+          "locale": "us"
+        }
+      ]
+    }
+  }
+}

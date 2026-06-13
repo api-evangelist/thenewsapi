@@ -1,0 +1,62 @@
+{
+  "title": "Get Sources - Technology Sources in English",
+  "description": "Example request and response for listing available technology news sources using the /news/sources endpoint.",
+  "request": {
+    "method": "GET",
+    "url": "https://api.thenewsapi.com/v1/news/sources",
+    "parameters": {
+      "api_token": "YOUR_API_TOKEN",
+      "categories": "tech",
+      "language": "en",
+      "page": 1
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "meta": {
+        "found": 1847,
+        "returned": 50,
+        "limit": 50,
+        "page": 1
+      },
+      "data": [
+        {
+          "source_id": "techcrunch-us-en",
+          "domain": "techcrunch.com",
+          "language": "en",
+          "locale": "us",
+          "categories": ["tech", "business"]
+        },
+        {
+          "source_id": "wired-us-en",
+          "domain": "wired.com",
+          "language": "en",
+          "locale": "us",
+          "categories": ["tech", "science", "entertainment"]
+        },
+        {
+          "source_id": "theverge-us-en",
+          "domain": "theverge.com",
+          "language": "en",
+          "locale": "us",
+          "categories": ["tech", "entertainment"]
+        },
+        {
+          "source_id": "arstechnica-us-en",
+          "domain": "arstechnica.com",
+          "language": "en",
+          "locale": "us",
+          "categories": ["tech", "science"]
+        },
+        {
+          "source_id": "zdnet-us-en",
+          "domain": "zdnet.com",
+          "language": "en",
+          "locale": "us",
+          "categories": ["tech", "business"]
+        }
+      ]
+    }
+  }
+}

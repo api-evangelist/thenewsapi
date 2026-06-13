@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://www.thenewsapi.com/schemas/source.json",
+  "title": "Source",
+  "description": "A news source available through TheNewsAPI.",
+  "type": "object",
+  "properties": {
+    "source_id": {
+      "type": "string",
+      "description": "Unique identifier for the source (e.g., techcrunch-us-en)."
+    },
+    "domain": {
+      "type": "string",
+      "description": "Domain name of the news source (e.g., techcrunch.com)."
+    },
+    "language": {
+      "type": "string",
+      "description": "Primary language code of the source (e.g., en)."
+    },
+    "locale": {
+      "type": "string",
+      "description": "Country code locale of the source (e.g., us, gb)."
+    },
+    "categories": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["general", "science", "sports", "business", "health", "entertainment", "tech", "politics", "food", "travel"]
+      },
+      "description": "Categories covered by this source."
+    }
+  },
+  "required": ["source_id", "domain", "language"],
+  "additionalProperties": false
+}

@@ -1,0 +1,74 @@
+{
+  "title": "Get All News - Technology Articles in English",
+  "description": "Example request and response for fetching technology articles in English using the /news/all endpoint.",
+  "request": {
+    "method": "GET",
+    "url": "https://api.thenewsapi.com/v1/news/all",
+    "parameters": {
+      "api_token": "YOUR_API_TOKEN",
+      "categories": "tech",
+      "language": "en",
+      "limit": 3,
+      "page": 1,
+      "sort": "published_on"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "meta": {
+        "found": 85420,
+        "returned": 3,
+        "limit": 3,
+        "page": 1
+      },
+      "data": [
+        {
+          "uuid": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+          "title": "New AI Chip Promises 10x Performance Gains for Edge Devices",
+          "description": "A leading semiconductor company has unveiled a next-generation AI processor designed specifically for edge computing applications.",
+          "keywords": "AI, chip, semiconductor, edge computing, performance",
+          "snippet": "The company announced the new processor at its annual developer conference, claiming significant improvements over previous generations...",
+          "url": "https://techcrunch.com/2026/06/13/new-ai-chip-edge-devices",
+          "image_url": "https://techcrunch.com/wp-content/uploads/2026/06/ai-chip.jpg",
+          "language": "en",
+          "published_at": "2026-06-13T08:30:00.000000Z",
+          "source": "techcrunch.com",
+          "categories": ["tech"],
+          "relevance_score": null,
+          "locale": "us"
+        },
+        {
+          "uuid": "b2c3d4e5-f6a7-8901-bcde-f12345678901",
+          "title": "Open Source Framework Simplifies Multi-Agent AI Systems",
+          "description": "A new open source project aims to make building multi-agent AI applications more accessible to developers.",
+          "keywords": "open source, AI, multi-agent, framework, developers",
+          "snippet": "The framework, released under MIT license, provides abstractions for orchestrating multiple AI agents in production environments...",
+          "url": "https://www.wired.com/2026/06/open-source-multi-agent-framework",
+          "image_url": "https://media.wired.com/photos/2026/06/ai-agents.jpg",
+          "language": "en",
+          "published_at": "2026-06-13T07:15:00.000000Z",
+          "source": "wired.com",
+          "categories": ["tech"],
+          "relevance_score": null,
+          "locale": "us"
+        },
+        {
+          "uuid": "c3d4e5f6-a7b8-9012-cdef-123456789012",
+          "title": "Cloud Provider Expands European Data Centers for GDPR Compliance",
+          "description": "A major cloud computing company is opening three new data centers in Europe to help customers meet data residency requirements.",
+          "keywords": "cloud, data center, Europe, GDPR, compliance",
+          "snippet": "The expansion will provide customers with additional options for storing and processing data within European Union borders...",
+          "url": "https://www.theverge.com/2026/06/13/cloud-europe-expansion",
+          "image_url": "https://cdn.theverge.com/uploads/2026/06/data-center.jpg",
+          "language": "en",
+          "published_at": "2026-06-13T06:45:00.000000Z",
+          "source": "theverge.com",
+          "categories": ["tech", "business"],
+          "relevance_score": null,
+          "locale": "us"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://www.thenewsapi.com/schemas/article.json",
+  "title": "Article",
+  "description": "A news article from TheNewsAPI with full metadata.",
+  "type": "object",
+  "properties": {
+    "uuid": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier for the article."
+    },
+    "title": {
+      "type": "string",
+      "description": "Article headline."
+    },
+    "description": {
+      "type": ["string", "null"],
+      "description": "Short summary or excerpt of the article."
+    },
+    "keywords": {
+      "type": ["string", "null"],
+      "description": "Comma-separated keywords associated with the article."
+    },
+    "snippet": {
+      "type": ["string", "null"],
+      "description": "Brief text snippet from the article body."
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Full URL to the original article."
+    },
+    "image_url": {
+      "type": ["string", "null"],
+      "format": "uri",
+      "description": "URL of the article's primary image, if available."
+    },
+    "language": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 5,
+      "description": "ISO 639-1 language code (e.g., en, es, fr)."
+    },
+    "published_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "UTC timestamp when the article was published."
+    },
+    "source": {
+      "type": "string",
+      "description": "Domain of the source publication (e.g., bbc.com)."
+    },
+    "categories": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["general", "science", "sports", "business", "health", "entertainment", "tech", "politics", "food", "travel"]
+      },
+      "description": "Categories the article belongs to."
+    },
+    "relevance_score": {
+      "type": ["number", "null"],
+      "description": "Relevance score when sorting by relevance. Null when not applicable."
+    },
+    "locale": {
+      "type": "string",
+      "description": "Country code locale of the article (e.g., us, gb, ca)."
+    },
+    "similar": {
+      "type": "array",
+      "items": {
+        "$ref": "#"
+      },
+      "description": "Array of similar articles (present in headlines response when include_similar=true)."
+    }
+  },
+  "required": ["uuid", "title", "url", "language", "published_at", "source"],
+  "additionalProperties": false
+}

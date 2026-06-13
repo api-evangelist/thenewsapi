@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://www.thenewsapi.com/schemas/article-list-response.json",
+  "title": "ArticleListResponse",
+  "description": "Paginated list response for news article endpoints.",
+  "type": "object",
+  "properties": {
+    "meta": {
+      "type": "object",
+      "description": "Pagination metadata.",
+      "properties": {
+        "found": {
+          "type": "integer",
+          "description": "Total number of articles matching the query."
+        },
+        "returned": {
+          "type": "integer",
+          "description": "Number of articles returned in this response."
+        },
+        "limit": {
+          "type": "integer",
+          "description": "Maximum articles per page for this request."
+        },
+        "page": {
+          "type": "integer",
+          "description": "Current page number."
+        }
+      },
+      "required": ["found", "returned", "limit", "page"]
+    },
+    "data": {
+      "type": "array",
+      "items": {
+        "$ref": "article.json"
+      },
+      "description": "Array of articles for the current page."
+    }
+  },
+  "required": ["meta", "data"]
+}

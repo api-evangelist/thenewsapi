@@ -1,0 +1,123 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "api": "https://www.thenewsapi.com/",
+    "endpoint": "https://www.thenewsapi.com/documentation#"
+  },
+  "@type": "WebAPI",
+  "@id": "https://www.thenewsapi.com",
+  "name": "TheNewsAPI",
+  "description": "Global news aggregation REST API providing real-time and historical news articles from thousands of sources with filtering by category, language, country, and search. Indexes over 1 million new articles per week from 40,000+ sources across 50+ countries and 35+ languages.",
+  "url": "https://www.thenewsapi.com",
+  "image": "https://www.thenewsapi.com/img/logo.png",
+  "documentation": "https://www.thenewsapi.com/documentation",
+  "termsOfService": "https://www.thenewsapi.com/terms",
+  "provider": {
+    "@type": "Organization",
+    "name": "TheNewsAPI",
+    "url": "https://www.thenewsapi.com",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "url": "https://www.thenewsapi.com/contact"
+    }
+  },
+  "offers": {
+    "@type": "Offer",
+    "url": "https://www.thenewsapi.com/pricing",
+    "description": "Free and paid subscription plans available. Free plan includes access to top stories and all news endpoints."
+  },
+  "potentialAction": [
+    {
+      "@type": "SearchAction",
+      "name": "Search All News",
+      "description": "Search and filter the entire article database with comprehensive options.",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://api.thenewsapi.com/v1/news/all?api_token={api_token}&search={search}&categories={categories}&language={language}",
+        "httpMethod": "GET"
+      }
+    },
+    {
+      "@type": "SearchAction",
+      "name": "Get Top Stories",
+      "description": "Retrieve live and historical top stories with advanced filtering.",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://api.thenewsapi.com/v1/news/top?api_token={api_token}&search={search}&categories={categories}&locale={locale}",
+        "httpMethod": "GET"
+      }
+    },
+    {
+      "@type": "SearchAction",
+      "name": "Get Headlines",
+      "description": "Get the latest headlines organized by category.",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://api.thenewsapi.com/v1/news/headlines?api_token={api_token}&locale={locale}&language={language}",
+        "httpMethod": "GET"
+      }
+    },
+    {
+      "@type": "ReadAction",
+      "name": "Get Article by UUID",
+      "description": "Retrieve a specific news article by its unique UUID.",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://api.thenewsapi.com/v1/news/uuid/{uuid}?api_token={api_token}",
+        "httpMethod": "GET"
+      }
+    },
+    {
+      "@type": "SearchAction",
+      "name": "Get Similar News",
+      "description": "Find articles similar to a specific article.",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://api.thenewsapi.com/v1/news/similar/{uuid}?api_token={api_token}&categories={categories}&language={language}",
+        "httpMethod": "GET"
+      }
+    },
+    {
+      "@type": "SearchAction",
+      "name": "List Sources",
+      "description": "List all available news sources with metadata.",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://api.thenewsapi.com/v1/news/sources?api_token={api_token}&categories={categories}&language={language}",
+        "httpMethod": "GET"
+      }
+    }
+  ],
+  "about": [
+    {
+      "@type": "Thing",
+      "name": "News Aggregation",
+      "description": "Aggregates news articles from 40,000+ global sources."
+    },
+    {
+      "@type": "Thing",
+      "name": "Real-Time News",
+      "description": "Provides real-time access to breaking news and top stories."
+    },
+    {
+      "@type": "Thing",
+      "name": "Historical News Archive",
+      "description": "Full historical archive searchable across all indexed sources."
+    }
+  ],
+  "encodingFormat": "application/json",
+  "inLanguage": [
+    "en", "es", "fr", "de", "pt", "zh", "ja", "ko", "ar", "ru"
+  ],
+  "areaServed": {
+    "@type": "Place",
+    "name": "Worldwide",
+    "description": "50+ countries including US, CA, GB, AU, DE, FR, JP, IN, BR, and more."
+  },
+  "availableChannel": {
+    "@type": "ServiceChannel",
+    "serviceUrl": "https://api.thenewsapi.com/v1",
+    "serviceType": "REST API",
+    "availableLanguage": "en"
+  }
+}
