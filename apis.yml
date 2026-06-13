@@ -1,0 +1,123 @@
+name: TheNewsAPI
+description: Global news aggregation REST API providing real-time and historical news articles from thousands of sources with filtering by category, language, country, and search. Indexes over 1 million new articles per week from 40,000+ sources across 50+ countries and 35+ languages.
+image: https://www.thenewsapi.com/img/logo.png
+url: https://www.thenewsapi.com
+created: '2026-06-13'
+modified: '2026-06-13'
+specificationVersion: '0.19'
+tags:
+  - news
+  - articles
+  - headlines
+  - media
+  - aggregation
+  - real-time
+apis:
+  - name: TheNewsAPI
+    description: RESTful API for accessing real-time and historical news articles, top stories, headlines, and related news from thousands of global sources with advanced filtering by category, language, country, date, and full-text search.
+    image: https://www.thenewsapi.com/img/logo.png
+    humanURL: https://www.thenewsapi.com
+    baseURL: https://api.thenewsapi.com/v1
+    tags:
+      - news
+      - headlines
+      - articles
+      - aggregation
+    properties:
+      - type: Documentation
+        url: https://www.thenewsapi.com/documentation
+      - type: Pricing
+        url: https://www.thenewsapi.com/pricing
+      - type: SignUp
+        url: https://www.thenewsapi.com/register
+      - type: Login
+        url: https://www.thenewsapi.com/login
+      - type: Plans
+        url: plans/plans.yml
+      - type: RateLimits
+        url: rate-limits/rate-limits.yml
+      - type: FinOps
+        url: finops/finops.yml
+    contact:
+      - FN: TheNewsAPI Support
+        url: https://www.thenewsapi.com/contact
+        email: ''
+    endpoints:
+      - name: All News
+        description: Search and filter the entire article database with comprehensive filtering options including search, categories, language, country, domain, and date range.
+        url: https://api.thenewsapi.com/v1/news/all
+        method: GET
+        tag: news
+      - name: Top Stories
+        description: Retrieve live and historical top stories with advanced filtering by category, language, country, and full-text search with boolean operators.
+        url: https://api.thenewsapi.com/v1/news/top
+        method: GET
+        tag: news
+      - name: Headlines
+        description: Get the latest headlines organized by category with optional similar article grouping. Available on Standard plan and above.
+        url: https://api.thenewsapi.com/v1/news/headlines
+        method: GET
+        tag: news
+      - name: Similar News
+        description: Find articles related to a specific article by UUID with optional category, domain, language, and date filters.
+        url: https://api.thenewsapi.com/v1/news/similar/{uuid}
+        method: GET
+        tag: news
+      - name: News by UUID
+        description: Retrieve a specific article by its unique UUID identifier.
+        url: https://api.thenewsapi.com/v1/news/uuid/{uuid}
+        method: GET
+        tag: news
+      - name: Sources
+        description: List all available news sources that can be used for filtering, including metadata on category and language coverage.
+        url: https://api.thenewsapi.com/v1/news/sources
+        method: GET
+        tag: sources
+common:
+  - type: Authentication
+    data:
+      type: apiKey
+      in: query
+      name: api_token
+      description: API token obtained after free registration, passed as a query parameter on all requests
+  - type: BaseURL
+    data:
+      url: https://api.thenewsapi.com/v1
+  - type: Versioning
+    data:
+      strategy: URL path prefix
+      current: v1
+  - type: DataFormats
+    data:
+      request: JSON via GET query parameters
+      response: JSON
+      encoding: UTF-8
+  - type: ErrorCodes
+    data:
+      - code: '400'
+        status: malformed_parameters
+        description: Invalid parameter formatting
+      - code: '401'
+        status: invalid_api_token
+        description: Authentication failure
+      - code: '402'
+        status: usage_limit_reached
+        description: Plan quota exceeded
+      - code: '403'
+        status: endpoint_access_restricted
+        description: Feature unavailable on current plan
+      - code: '404'
+        status: resource_not_found
+        description: Article or endpoint not found
+      - code: '429'
+        status: rate_limit_reached
+        description: Too many requests within 60-second window
+      - code: '500'
+        status: server_error
+        description: Internal service failure
+      - code: '503'
+        status: maintenance_mode
+        description: Service temporarily unavailable
+maintainers:
+  - FN: TheNewsAPI
+    url: https://www.thenewsapi.com

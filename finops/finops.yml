@@ -1,0 +1,80 @@
+finops:
+  description: Financial operations guidance for managing TheNewsAPI spend, optimizing API usage, and forecasting costs across plan tiers.
+
+  pricingModel:
+    type: subscription
+    billingCycles:
+      - monthly
+      - annual
+    annualDiscount: true
+    annualDiscountNote: Annual billing provides approximately 15-17% savings versus monthly rates across all paid plans.
+    freeTier: true
+    freeTierNote: Free plan requires no payment details. Suitable for prototyping and low-volume use.
+
+  plans:
+    - name: Free
+      monthlyCost: 0.00
+      annualMonthlyCost: 0.00
+      currency: USD
+      dailyRequests: 100
+      costPerRequest: 0.00
+      bestFor: Development, prototyping, personal projects
+
+    - name: Basic
+      monthlyCost: 19.00
+      annualMonthlyCost: 16.00
+      currency: USD
+      dailyRequests: 2500
+      costPerRequest: 0.0076
+      annualCostPerRequest: 0.0064
+      bestFor: Small applications, newsletters, lightweight production use
+
+    - name: Standard
+      monthlyCost: 49.00
+      annualMonthlyCost: 41.00
+      currency: USD
+      dailyRequests: 10000
+      costPerRequest: 0.0049
+      annualCostPerRequest: 0.0041
+      bestFor: Mid-size applications, content platforms, dashboards
+
+    - name: Pro
+      monthlyCost: 79.00
+      annualMonthlyCost: 66.00
+      currency: USD
+      dailyRequests: 25000
+      costPerRequest: 0.0032
+      annualCostPerRequest: 0.0026
+      bestFor: High-traffic applications, media aggregators, large-scale data pipelines
+
+    - name: Enterprise
+      monthlyCost: custom
+      currency: USD
+      dailyRequests: custom
+      bestFor: Organizations with 25,000+ daily requests, custom SLA requirements, or dedicated support needs
+
+  costOptimization:
+    - strategy: Use annual billing
+      description: Switch to annual billing to save approximately 15-17% versus month-to-month rates on Basic, Standard, and Pro plans.
+
+    - strategy: Cache responses locally
+      description: TheNewsAPI uses state-of-the-art caching on their side, but consumers should also cache responses in their own infrastructure to avoid redundant requests consuming daily quota.
+
+    - strategy: Use the limit parameter efficiently
+      description: Request only as many articles as needed per call using the limit parameter. Requesting fewer articles per call preserves daily quota for other operations.
+
+    - strategy: Filter precisely at the API level
+      description: Apply category, language, locale, and domain filters at query time rather than filtering large result sets client-side. This reduces returned payload size and keeps pagination costs low.
+
+    - strategy: Monitor daily quota usage
+      description: Track HTTP 402 (usage_limit_reached) responses to detect when daily limits are approaching. Implement alerting to avoid unexpected service interruptions.
+
+    - strategy: Start on Free, graduate to paid
+      description: The Free plan supports 100 daily requests at no cost with no card required. Use it to validate integration before committing to a paid plan.
+
+    - strategy: Choose the right plan for actual usage
+      description: Analyze average daily request volume over a 30-day period before selecting a plan. Overshooting to Pro when Standard suffices adds unnecessary spend.
+
+  enterpriseContact:
+    url: https://www.thenewsapi.com/contact
+    description: Contact TheNewsAPI sales team for custom enterprise pricing, volume discounts, and SLA terms beyond the Pro plan.

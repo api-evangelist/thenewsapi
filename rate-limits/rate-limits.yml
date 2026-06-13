@@ -1,0 +1,48 @@
+rateLimits:
+  description: TheNewsAPI enforces daily request quotas per plan and a per-minute burst limit enforced across all plans. Exceeding limits returns HTTP 429 with status rate_limit_reached or HTTP 402 with status usage_limit_reached.
+
+  burstLimit:
+    window: 60 seconds
+    description: Requests within any 60-second rolling window are subject to burst throttling. Rate limit is enforced at the API gateway level regardless of plan tier.
+    errorCode: 429
+    errorStatus: rate_limit_reached
+
+  dailyLimits:
+    - plan: Free
+      dailyRequests: 100
+      articlesPerRequest: 3
+      errorCode: 402
+      errorStatus: usage_limit_reached
+
+    - plan: Basic
+      dailyRequests: 2500
+      articlesPerRequest: 25
+      errorCode: 402
+      errorStatus: usage_limit_reached
+
+    - plan: Standard
+      dailyRequests: 10000
+      articlesPerRequest: 100
+      errorCode: 402
+      errorStatus: usage_limit_reached
+
+    - plan: Pro
+      dailyRequests: 25000
+      articlesPerRequest: 200
+      errorCode: 402
+      errorStatus: usage_limit_reached
+
+    - plan: Enterprise
+      dailyRequests: custom
+      articlesPerRequest: custom
+      errorCode: 402
+      errorStatus: usage_limit_reached
+
+  pagination:
+    maxArticlesPerQuery: 20000
+    description: All endpoints support page-based pagination. The total retrievable result set per query is capped at 20,000 articles (limit × pages).
+    sourcesLimit: 50
+    sourcesDescription: The Sources endpoint returns a fixed maximum of 50 results per request.
+
+  headers:
+    description: TheNewsAPI does not publicly document rate limit response headers. Consumers should monitor HTTP 429 and 402 responses and implement exponential back-off.

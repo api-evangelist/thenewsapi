@@ -1,0 +1,89 @@
+plans:
+  - name: Free
+    description: No-cost entry plan for developers to evaluate TheNewsAPI with no payment details required.
+    url: https://www.thenewsapi.com/pricing
+    price: 0.00
+    currency: USD
+    billingCycle: monthly
+    features:
+      - Top Stories endpoint access
+      - All News endpoint access
+      - Similar News endpoint access
+      - News by UUID endpoint access
+      - Sources endpoint access
+      - Real-time data
+      - Historical data
+      - Full source access
+      - Full language access
+      - Technical support
+    limits:
+      dailyRequests: 100
+      articlesPerRequest: 3
+      totalArticlesPerQuery: 20000
+
+  - name: Basic
+    description: Low-volume paid plan for small projects and light production workloads.
+    url: https://www.thenewsapi.com/pricing
+    price: 19.00
+    annualPrice: 16.00
+    currency: USD
+    billingCycle: monthly
+    features:
+      - All Free plan features
+      - Headlines endpoint access
+      - Increased daily request quota
+      - More articles per request
+    limits:
+      dailyRequests: 2500
+      articlesPerRequest: 25
+      totalArticlesPerQuery: 20000
+
+  - name: Standard
+    description: Popular mid-tier plan for production applications with moderate traffic needs.
+    url: https://www.thenewsapi.com/pricing
+    price: 49.00
+    annualPrice: 41.00
+    currency: USD
+    billingCycle: monthly
+    features:
+      - All Basic plan features
+      - Headlines endpoint access
+      - Increased daily request quota
+      - Higher articles-per-request ceiling
+    limits:
+      dailyRequests: 10000
+      articlesPerRequest: 100
+      totalArticlesPerQuery: 20000
+
+  - name: Pro
+    description: High-volume plan for large-scale applications and media platforms with demanding throughput requirements.
+    url: https://www.thenewsapi.com/pricing
+    price: 79.00
+    annualPrice: 66.00
+    currency: USD
+    billingCycle: monthly
+    features:
+      - All Standard plan features
+      - Headlines endpoint access
+      - High daily request quota
+      - Maximum articles per request
+    limits:
+      dailyRequests: 25000
+      articlesPerRequest: 200
+      totalArticlesPerQuery: 20000
+
+  - name: Enterprise
+    description: Custom plan for organizations requiring higher quotas, custom SLAs, and dedicated support. Contact sales for pricing.
+    url: https://www.thenewsapi.com/pricing
+    price: custom
+    currency: USD
+    billingCycle: custom
+    features:
+      - All Pro plan features
+      - Adjustable daily request limits
+      - Variable articles per request ceiling
+      - Custom service level agreements
+      - Dedicated support
+    limits:
+      dailyRequests: custom
+      articlesPerRequest: custom
