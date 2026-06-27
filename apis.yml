@@ -30,7 +30,7 @@ apis:
         url: openapi/openapi.json
       - type: Pricing
         url: https://www.thenewsapi.com/pricing
-      - type: SignUp
+      - type: Signup
         url: https://www.thenewsapi.com/register
       - type: Login
         url: https://www.thenewsapi.com/login
