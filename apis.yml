@@ -76,6 +76,10 @@ apis:
         method: GET
         tag: sources
 common:
+  - type: DomainSecurity
+    url: security/thenewsapi-domain-security.yml
+  - type: Authentication
+    url: authentication/thenewsapi-authentication.yml
   - type: Authentication
     data:
       type: apiKey
