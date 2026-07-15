@@ -76,6 +76,8 @@ apis:
         method: GET
         tag: sources
 common:
+  - type: AgenticAccess
+    url: agentic-access/thenewsapi-agentic-access.yml
   - type: DomainSecurity
     url: security/thenewsapi-domain-security.yml
   - type: Authentication
