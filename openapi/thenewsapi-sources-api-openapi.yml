@@ -1,0 +1,215 @@
+openapi: 3.0.3
+info:
+  title: TheNews news sources API
+  description: Global news aggregation REST API providing real-time and historical news articles from thousands of sources with filtering by category, language, country, and search. Indexes over 1 million new articles per week from 40,000+ sources across 50+ countries and 35+ languages.
+  version: 1.0.0
+  termsOfService: https://www.thenewsapi.com/terms
+  contact:
+    url: https://www.thenewsapi.com/contact
+  license:
+    name: Proprietary
+    url: https://www.thenewsapi.com/terms
+servers:
+- url: https://api.thenewsapi.com/v1
+  description: Production server
+security:
+- ApiToken: []
+tags:
+- name: sources
+  description: News source discovery
+paths:
+  /news/sources:
+    get:
+      operationId: getSources
+      summary: Sources
+      description: List all available news sources that can be used for filtering, including metadata on category and language coverage. Returns a fixed limit of 50 per page.
+      tags:
+      - sources
+      parameters:
+      - $ref: '#/components/parameters/categories'
+      - $ref: '#/components/parameters/exclude_categories'
+      - $ref: '#/components/parameters/language'
+      - $ref: '#/components/parameters/page'
+      responses:
+        '200':
+          description: Successful response with paginated list of news sources
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SourceListResponse'
+              example:
+                meta:
+                  found: 40000
+                  returned: 50
+                  limit: 50
+                  page: 1
+                data:
+                - source_id: techcrunch-us-en
+                  domain: techcrunch.com
+                  language: en
+                  locale: us
+                  categories:
+                  - tech
+                  - business
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/ServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+components:
+  responses:
+    TooManyRequests:
+      description: Rate limit reached — too many requests within the 60-second window.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            error:
+              code: rate_limit_reached
+              message: You have exceeded the rate limit. Please wait before retrying.
+    Unauthorized:
+      description: Invalid or missing API token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            error:
+              code: invalid_api_token
+              message: Your API token is invalid.
+    ServerError:
+      description: Internal server error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            error:
+              code: server_error
+              message: An internal server error occurred.
+    BadRequest:
+      description: Malformed parameters — invalid parameter formatting.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            error:
+              code: malformed_parameters
+              message: Invalid parameter formatting.
+    ServiceUnavailable:
+      description: Service temporarily unavailable — maintenance mode.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            error:
+              code: maintenance_mode
+              message: The service is temporarily unavailable for maintenance.
+  parameters:
+    exclude_categories:
+      name: exclude_categories
+      in: query
+      description: Comma-separated list of categories to exclude.
+      required: false
+      schema:
+        type: string
+    page:
+      name: page
+      in: query
+      description: Page number for pagination. Maximum total of 20,000 results across all pages.
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    categories:
+      name: categories
+      in: query
+      description: 'Comma-separated list of categories to include. Options: general, science, sports, business, health, entertainment, tech, politics, food, travel.'
+      required: false
+      schema:
+        type: string
+        example: tech,business
+    language:
+      name: language
+      in: query
+      description: Comma-separated language codes to filter results (e.g., en,es,fr). Supports 35+ languages.
+      required: false
+      schema:
+        type: string
+        example: en,es
+  schemas:
+    Source:
+      type: object
+      description: A news source with metadata.
+      properties:
+        source_id:
+          type: string
+          description: Unique identifier for the source.
+        domain:
+          type: string
+          description: Domain name of the news source.
+        language:
+          type: string
+          description: Primary language of the source.
+        locale:
+          type: string
+          description: Country code locale of the source.
+        categories:
+          type: array
+          items:
+            type: string
+          description: Categories covered by this source.
+    SourceListResponse:
+      type: object
+      description: Paginated list of news sources.
+      properties:
+        meta:
+          $ref: '#/components/schemas/PaginationMeta'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Source'
+    PaginationMeta:
+      type: object
+      description: Pagination metadata for list responses.
+      properties:
+        found:
+          type: integer
+          description: Total number of articles matching the query.
+        returned:
+          type: integer
+          description: Number of articles returned in this response.
+        limit:
+          type: integer
+          description: Maximum number of articles per page.
+        page:
+          type: integer
+          description: Current page number.
+    ErrorResponse:
+      type: object
+      description: Standard error response.
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: Machine-readable error code.
+            message:
+              type: string
+              description: Human-readable error description.
+  securitySchemes:
+    ApiToken:
+      type: apiKey
+      in: query
+      name: api_token
+      description: API token obtained after free registration at https://www.thenewsapi.com/register
