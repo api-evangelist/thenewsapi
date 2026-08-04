@@ -1,0 +1,16 @@
+{
+  "provider": "thenewsapi",
+  "sources": [
+    "thenewsapi-news-api-openapi.yml",
+    "thenewsapi-sources-api-openapi.yml"
+  ],
+  "outputs": [
+    "thenewsapi-news-api-openapi.yml",
+    "thenewsapi-sources-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

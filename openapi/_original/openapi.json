@@ -1,0 +1,904 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "TheNewsAPI",
+    "description": "Global news aggregation REST API providing real-time and historical news articles from thousands of sources with filtering by category, language, country, and search. Indexes over 1 million new articles per week from 40,000+ sources across 50+ countries and 35+ languages.",
+    "version": "1.0.0",
+    "termsOfService": "https://www.thenewsapi.com/terms",
+    "contact": {
+      "url": "https://www.thenewsapi.com/contact"
+    },
+    "license": {
+      "name": "Proprietary",
+      "url": "https://www.thenewsapi.com/terms"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.thenewsapi.com/v1",
+      "description": "Production server"
+    }
+  ],
+  "security": [
+    {
+      "ApiToken": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "news",
+      "description": "News article retrieval and search"
+    },
+    {
+      "name": "sources",
+      "description": "News source discovery"
+    }
+  ],
+  "paths": {
+    "/news/all": {
+      "get": {
+        "operationId": "getAllNews",
+        "summary": "All News",
+        "description": "Search and filter the entire article database with comprehensive filtering options including search, categories, language, country, domain, and date range.",
+        "tags": ["news"],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/search"
+          },
+          {
+            "$ref": "#/components/parameters/search_fields"
+          },
+          {
+            "$ref": "#/components/parameters/locale"
+          },
+          {
+            "$ref": "#/components/parameters/categories"
+          },
+          {
+            "$ref": "#/components/parameters/exclude_categories"
+          },
+          {
+            "$ref": "#/components/parameters/domains"
+          },
+          {
+            "$ref": "#/components/parameters/exclude_domains"
+          },
+          {
+            "$ref": "#/components/parameters/source_ids"
+          },
+          {
+            "$ref": "#/components/parameters/exclude_source_ids"
+          },
+          {
+            "$ref": "#/components/parameters/language"
+          },
+          {
+            "$ref": "#/components/parameters/published_before"
+          },
+          {
+            "$ref": "#/components/parameters/published_after"
+          },
+          {
+            "$ref": "#/components/parameters/published_on"
+          },
+          {
+            "$ref": "#/components/parameters/sort"
+          },
+          {
+            "$ref": "#/components/parameters/limit"
+          },
+          {
+            "$ref": "#/components/parameters/page"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with paginated article list",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Rate limit ceiling for the current period",
+                "schema": { "type": "integer" }
+              },
+              "X-UsageLimit-Limit": {
+                "description": "Usage limit for the current plan",
+                "schema": { "type": "integer" }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ArticleListResponse"
+                },
+                "example": {
+                  "meta": {
+                    "found": 1250000,
+                    "returned": 3,
+                    "limit": 3,
+                    "page": 1
+                  },
+                  "data": [
+                    {
+                      "uuid": "b5a9c0d1-e2f3-4a5b-8c6d-7e9f0a1b2c3d",
+                      "title": "Global Markets Rally on Positive Economic Data",
+                      "description": "Stock markets around the world surged following better-than-expected employment figures.",
+                      "keywords": "markets, economy, stocks, employment",
+                      "snippet": "Global markets rallied on Friday after key economic indicators surprised analysts...",
+                      "url": "https://example.com/article/global-markets-rally",
+                      "image_url": "https://example.com/images/markets.jpg",
+                      "language": "en",
+                      "published_at": "2026-06-13T09:30:00.000000Z",
+                      "source": "example.com",
+                      "categories": ["business", "general"],
+                      "relevance_score": null,
+                      "locale": "us"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": { "$ref": "#/components/responses/BadRequest" },
+          "401": { "$ref": "#/components/responses/Unauthorized" },
+          "402": { "$ref": "#/components/responses/PaymentRequired" },
+          "403": { "$ref": "#/components/responses/Forbidden" },
+          "429": { "$ref": "#/components/responses/TooManyRequests" },
+          "500": { "$ref": "#/components/responses/ServerError" },
+          "503": { "$ref": "#/components/responses/ServiceUnavailable" }
+        }
+      }
+    },
+    "/news/top": {
+      "get": {
+        "operationId": "getTopStories",
+        "summary": "Top Stories",
+        "description": "Retrieve live and historical top stories with advanced filtering by category, language, country, and full-text search with boolean operators.",
+        "tags": ["news"],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/search"
+          },
+          {
+            "$ref": "#/components/parameters/search_fields"
+          },
+          {
+            "$ref": "#/components/parameters/locale"
+          },
+          {
+            "$ref": "#/components/parameters/categories"
+          },
+          {
+            "$ref": "#/components/parameters/exclude_categories"
+          },
+          {
+            "$ref": "#/components/parameters/domains"
+          },
+          {
+            "$ref": "#/components/parameters/exclude_domains"
+          },
+          {
+            "$ref": "#/components/parameters/source_ids"
+          },
+          {
+            "$ref": "#/components/parameters/exclude_source_ids"
+          },
+          {
+            "$ref": "#/components/parameters/language"
+          },
+          {
+            "$ref": "#/components/parameters/published_before"
+          },
+          {
+            "$ref": "#/components/parameters/published_after"
+          },
+          {
+            "$ref": "#/components/parameters/published_on"
+          },
+          {
+            "$ref": "#/components/parameters/sort"
+          },
+          {
+            "$ref": "#/components/parameters/limit"
+          },
+          {
+            "$ref": "#/components/parameters/page"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with paginated top stories",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ArticleListResponse"
+                }
+              }
+            }
+          },
+          "400": { "$ref": "#/components/responses/BadRequest" },
+          "401": { "$ref": "#/components/responses/Unauthorized" },
+          "402": { "$ref": "#/components/responses/PaymentRequired" },
+          "403": { "$ref": "#/components/responses/Forbidden" },
+          "429": { "$ref": "#/components/responses/TooManyRequests" },
+          "500": { "$ref": "#/components/responses/ServerError" },
+          "503": { "$ref": "#/components/responses/ServiceUnavailable" }
+        }
+      }
+    },
+    "/news/headlines": {
+      "get": {
+        "operationId": "getHeadlines",
+        "summary": "Headlines",
+        "description": "Get the latest headlines organized by category with optional similar article grouping. Available on Standard plan and above.",
+        "tags": ["news"],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/locale"
+          },
+          {
+            "$ref": "#/components/parameters/domains"
+          },
+          {
+            "$ref": "#/components/parameters/exclude_domains"
+          },
+          {
+            "$ref": "#/components/parameters/source_ids"
+          },
+          {
+            "$ref": "#/components/parameters/exclude_source_ids"
+          },
+          {
+            "$ref": "#/components/parameters/language"
+          },
+          {
+            "$ref": "#/components/parameters/published_on"
+          },
+          {
+            "name": "headlines_per_category",
+            "in": "query",
+            "description": "Number of headlines to return per category (1-10, default 6).",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 10,
+              "default": 6
+            }
+          },
+          {
+            "name": "include_similar",
+            "in": "query",
+            "description": "Whether to include similar articles for each headline (default true).",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with categorized headlines",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HeadlinesResponse"
+                }
+              }
+            }
+          },
+          "400": { "$ref": "#/components/responses/BadRequest" },
+          "401": { "$ref": "#/components/responses/Unauthorized" },
+          "402": { "$ref": "#/components/responses/PaymentRequired" },
+          "403": { "$ref": "#/components/responses/Forbidden" },
+          "429": { "$ref": "#/components/responses/TooManyRequests" },
+          "500": { "$ref": "#/components/responses/ServerError" },
+          "503": { "$ref": "#/components/responses/ServiceUnavailable" }
+        }
+      }
+    },
+    "/news/similar/{uuid}": {
+      "get": {
+        "operationId": "getSimilarNews",
+        "summary": "Similar News",
+        "description": "Find articles related to a specific article by UUID with optional category, domain, language, and date filters.",
+        "tags": ["news"],
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "description": "The unique UUID identifier of the article to find similar articles for.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/categories"
+          },
+          {
+            "$ref": "#/components/parameters/exclude_categories"
+          },
+          {
+            "$ref": "#/components/parameters/domains"
+          },
+          {
+            "$ref": "#/components/parameters/exclude_domains"
+          },
+          {
+            "$ref": "#/components/parameters/source_ids"
+          },
+          {
+            "$ref": "#/components/parameters/exclude_source_ids"
+          },
+          {
+            "$ref": "#/components/parameters/language"
+          },
+          {
+            "$ref": "#/components/parameters/published_before"
+          },
+          {
+            "$ref": "#/components/parameters/published_after"
+          },
+          {
+            "$ref": "#/components/parameters/published_on"
+          },
+          {
+            "$ref": "#/components/parameters/limit"
+          },
+          {
+            "$ref": "#/components/parameters/page"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with similar articles ranked by relevance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ArticleListResponse"
+                }
+              }
+            }
+          },
+          "400": { "$ref": "#/components/responses/BadRequest" },
+          "401": { "$ref": "#/components/responses/Unauthorized" },
+          "404": { "$ref": "#/components/responses/NotFound" },
+          "429": { "$ref": "#/components/responses/TooManyRequests" },
+          "500": { "$ref": "#/components/responses/ServerError" },
+          "503": { "$ref": "#/components/responses/ServiceUnavailable" }
+        }
+      }
+    },
+    "/news/uuid/{uuid}": {
+      "get": {
+        "operationId": "getNewsByUuid",
+        "summary": "News by UUID",
+        "description": "Retrieve a specific article by its unique UUID identifier.",
+        "tags": ["news"],
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "description": "The unique UUID identifier of the article to retrieve.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with the requested article",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Article"
+                }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/Unauthorized" },
+          "404": { "$ref": "#/components/responses/NotFound" },
+          "429": { "$ref": "#/components/responses/TooManyRequests" },
+          "500": { "$ref": "#/components/responses/ServerError" },
+          "503": { "$ref": "#/components/responses/ServiceUnavailable" }
+        }
+      }
+    },
+    "/news/sources": {
+      "get": {
+        "operationId": "getSources",
+        "summary": "Sources",
+        "description": "List all available news sources that can be used for filtering, including metadata on category and language coverage. Returns a fixed limit of 50 per page.",
+        "tags": ["sources"],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/categories"
+          },
+          {
+            "$ref": "#/components/parameters/exclude_categories"
+          },
+          {
+            "$ref": "#/components/parameters/language"
+          },
+          {
+            "$ref": "#/components/parameters/page"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with paginated list of news sources",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SourceListResponse"
+                },
+                "example": {
+                  "meta": {
+                    "found": 40000,
+                    "returned": 50,
+                    "limit": 50,
+                    "page": 1
+                  },
+                  "data": [
+                    {
+                      "source_id": "techcrunch-us-en",
+                      "domain": "techcrunch.com",
+                      "language": "en",
+                      "locale": "us",
+                      "categories": ["tech", "business"]
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": { "$ref": "#/components/responses/BadRequest" },
+          "401": { "$ref": "#/components/responses/Unauthorized" },
+          "429": { "$ref": "#/components/responses/TooManyRequests" },
+          "500": { "$ref": "#/components/responses/ServerError" },
+          "503": { "$ref": "#/components/responses/ServiceUnavailable" }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "ApiToken": {
+        "type": "apiKey",
+        "in": "query",
+        "name": "api_token",
+        "description": "API token obtained after free registration at https://www.thenewsapi.com/register"
+      }
+    },
+    "parameters": {
+      "search": {
+        "name": "search",
+        "in": "query",
+        "description": "Search query with advanced operators. Supports + (AND), | (OR), - (NOT), \"...\" (phrase), * (prefix), () (grouping), \\ (escape). URL-encode when using special characters.",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "search_fields": {
+        "name": "search_fields",
+        "in": "query",
+        "description": "Comma-separated list of fields to search. Options: title, description, keywords, main_text.",
+        "required": false,
+        "schema": {
+          "type": "string",
+          "example": "title,description"
+        }
+      },
+      "locale": {
+        "name": "locale",
+        "in": "query",
+        "description": "Comma-separated country codes to filter articles by locale (e.g., us,ca,gb). Supports 50+ countries.",
+        "required": false,
+        "schema": {
+          "type": "string",
+          "example": "us,ca"
+        }
+      },
+      "categories": {
+        "name": "categories",
+        "in": "query",
+        "description": "Comma-separated list of categories to include. Options: general, science, sports, business, health, entertainment, tech, politics, food, travel.",
+        "required": false,
+        "schema": {
+          "type": "string",
+          "example": "tech,business"
+        }
+      },
+      "exclude_categories": {
+        "name": "exclude_categories",
+        "in": "query",
+        "description": "Comma-separated list of categories to exclude.",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "domains": {
+        "name": "domains",
+        "in": "query",
+        "description": "Comma-separated list of source domains to include (e.g., techcrunch.com,bbc.com).",
+        "required": false,
+        "schema": {
+          "type": "string",
+          "example": "techcrunch.com,bbc.com"
+        }
+      },
+      "exclude_domains": {
+        "name": "exclude_domains",
+        "in": "query",
+        "description": "Comma-separated list of source domains to exclude.",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "source_ids": {
+        "name": "source_ids",
+        "in": "query",
+        "description": "Comma-separated list of source IDs to include (as returned by the /news/sources endpoint).",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "exclude_source_ids": {
+        "name": "exclude_source_ids",
+        "in": "query",
+        "description": "Comma-separated list of source IDs to exclude.",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "language": {
+        "name": "language",
+        "in": "query",
+        "description": "Comma-separated language codes to filter results (e.g., en,es,fr). Supports 35+ languages.",
+        "required": false,
+        "schema": {
+          "type": "string",
+          "example": "en,es"
+        }
+      },
+      "published_before": {
+        "name": "published_before",
+        "in": "query",
+        "description": "Return articles published before this date/time (UTC). Formats: Y-m-d\\TH:i:s, Y-m-d\\TH:i, Y-m-d\\TH, Y-m-d, Y-m, Y.",
+        "required": false,
+        "schema": {
+          "type": "string",
+          "example": "2026-06-13T23:15:37"
+        }
+      },
+      "published_after": {
+        "name": "published_after",
+        "in": "query",
+        "description": "Return articles published after this date/time (UTC). Formats: Y-m-d\\TH:i:s, Y-m-d\\TH:i, Y-m-d\\TH, Y-m-d, Y-m, Y.",
+        "required": false,
+        "schema": {
+          "type": "string",
+          "example": "2026-01-01T00:00:00"
+        }
+      },
+      "published_on": {
+        "name": "published_on",
+        "in": "query",
+        "description": "Return articles published on this exact date (UTC). Format: Y-m-d.",
+        "required": false,
+        "schema": {
+          "type": "string",
+          "format": "date",
+          "example": "2026-06-13"
+        }
+      },
+      "sort": {
+        "name": "sort",
+        "in": "query",
+        "description": "Sort order for results. Options: published_on (chronological), relevance_score (by search relevance).",
+        "required": false,
+        "schema": {
+          "type": "string",
+          "enum": ["published_on", "relevance_score"],
+          "default": "published_on"
+        }
+      },
+      "limit": {
+        "name": "limit",
+        "in": "query",
+        "description": "Maximum number of results to return per page. Upper bound is determined by the current plan.",
+        "required": false,
+        "schema": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "page": {
+        "name": "page",
+        "in": "query",
+        "description": "Page number for pagination. Maximum total of 20,000 results across all pages.",
+        "required": false,
+        "schema": {
+          "type": "integer",
+          "minimum": 1,
+          "default": 1
+        }
+      }
+    },
+    "schemas": {
+      "Article": {
+        "type": "object",
+        "description": "A news article with full metadata.",
+        "properties": {
+          "uuid": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Unique identifier for the article."
+          },
+          "title": {
+            "type": "string",
+            "description": "Article headline."
+          },
+          "description": {
+            "type": "string",
+            "description": "Short summary or excerpt of the article."
+          },
+          "keywords": {
+            "type": "string",
+            "description": "Comma-separated keywords associated with the article."
+          },
+          "snippet": {
+            "type": "string",
+            "description": "Brief text snippet from the article body."
+          },
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "description": "Full URL to the original article."
+          },
+          "image_url": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true,
+            "description": "URL of the article's primary image, if available."
+          },
+          "language": {
+            "type": "string",
+            "description": "ISO 639-1 language code of the article (e.g., en, es, fr)."
+          },
+          "published_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "UTC timestamp when the article was published."
+          },
+          "source": {
+            "type": "string",
+            "description": "Domain of the source publication (e.g., bbc.com)."
+          },
+          "categories": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["general", "science", "sports", "business", "health", "entertainment", "tech", "politics", "food", "travel"]
+            },
+            "description": "List of categories the article belongs to."
+          },
+          "relevance_score": {
+            "type": "number",
+            "format": "float",
+            "nullable": true,
+            "description": "Relevance score when sorting by relevance_score. Null when not applicable."
+          },
+          "locale": {
+            "type": "string",
+            "description": "Country code locale of the article (e.g., us, gb, ca)."
+          },
+          "similar": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Article"
+            },
+            "description": "Array of similar articles (only present in headlines response when include_similar=true)."
+          }
+        }
+      },
+      "Source": {
+        "type": "object",
+        "description": "A news source with metadata.",
+        "properties": {
+          "source_id": {
+            "type": "string",
+            "description": "Unique identifier for the source."
+          },
+          "domain": {
+            "type": "string",
+            "description": "Domain name of the news source."
+          },
+          "language": {
+            "type": "string",
+            "description": "Primary language of the source."
+          },
+          "locale": {
+            "type": "string",
+            "description": "Country code locale of the source."
+          },
+          "categories": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Categories covered by this source."
+          }
+        }
+      },
+      "PaginationMeta": {
+        "type": "object",
+        "description": "Pagination metadata for list responses.",
+        "properties": {
+          "found": {
+            "type": "integer",
+            "description": "Total number of articles matching the query."
+          },
+          "returned": {
+            "type": "integer",
+            "description": "Number of articles returned in this response."
+          },
+          "limit": {
+            "type": "integer",
+            "description": "Maximum number of articles per page."
+          },
+          "page": {
+            "type": "integer",
+            "description": "Current page number."
+          }
+        }
+      },
+      "ArticleListResponse": {
+        "type": "object",
+        "description": "Paginated list of news articles.",
+        "properties": {
+          "meta": {
+            "$ref": "#/components/schemas/PaginationMeta"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Article"
+            }
+          }
+        }
+      },
+      "HeadlinesResponse": {
+        "type": "object",
+        "description": "Headlines grouped by category.",
+        "properties": {
+          "meta": {
+            "$ref": "#/components/schemas/PaginationMeta"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Article"
+            }
+          }
+        }
+      },
+      "SourceListResponse": {
+        "type": "object",
+        "description": "Paginated list of news sources.",
+        "properties": {
+          "meta": {
+            "$ref": "#/components/schemas/PaginationMeta"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Source"
+            }
+          }
+        }
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "description": "Standard error response.",
+        "properties": {
+          "error": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "Machine-readable error code."
+              },
+              "message": {
+                "type": "string",
+                "description": "Human-readable error description."
+              }
+            }
+          }
+        }
+      }
+    },
+    "responses": {
+      "BadRequest": {
+        "description": "Malformed parameters — invalid parameter formatting.",
+        "content": {
+          "application/json": {
+            "schema": { "$ref": "#/components/schemas/ErrorResponse" },
+            "example": { "error": { "code": "malformed_parameters", "message": "Invalid parameter formatting." } }
+          }
+        }
+      },
+      "Unauthorized": {
+        "description": "Invalid or missing API token.",
+        "content": {
+          "application/json": {
+            "schema": { "$ref": "#/components/schemas/ErrorResponse" },
+            "example": { "error": { "code": "invalid_api_token", "message": "Your API token is invalid." } }
+          }
+        }
+      },
+      "PaymentRequired": {
+        "description": "Plan usage limit reached.",
+        "content": {
+          "application/json": {
+            "schema": { "$ref": "#/components/schemas/ErrorResponse" },
+            "example": { "error": { "code": "usage_limit_reached", "message": "You have reached your plan usage limit." } }
+          }
+        }
+      },
+      "Forbidden": {
+        "description": "Endpoint access restricted — not available on current plan.",
+        "content": {
+          "application/json": {
+            "schema": { "$ref": "#/components/schemas/ErrorResponse" },
+            "example": { "error": { "code": "endpoint_access_restricted", "message": "This endpoint is not available on your current plan." } }
+          }
+        }
+      },
+      "NotFound": {
+        "description": "Resource not found.",
+        "content": {
+          "application/json": {
+            "schema": { "$ref": "#/components/schemas/ErrorResponse" },
+            "example": { "error": { "code": "resource_not_found", "message": "The requested article was not found." } }
+          }
+        }
+      },
+      "TooManyRequests": {
+        "description": "Rate limit reached — too many requests within the 60-second window.",
+        "content": {
+          "application/json": {
+            "schema": { "$ref": "#/components/schemas/ErrorResponse" },
+            "example": { "error": { "code": "rate_limit_reached", "message": "You have exceeded the rate limit. Please wait before retrying." } }
+          }
+        }
+      },
+      "ServerError": {
+        "description": "Internal server error.",
+        "content": {
+          "application/json": {
+            "schema": { "$ref": "#/components/schemas/ErrorResponse" },
+            "example": { "error": { "code": "server_error", "message": "An internal server error occurred." } }
+          }
+        }
+      },
+      "ServiceUnavailable": {
+        "description": "Service temporarily unavailable — maintenance mode.",
+        "content": {
+          "application/json": {
+            "schema": { "$ref": "#/components/schemas/ErrorResponse" },
+            "example": { "error": { "code": "maintenance_mode", "message": "The service is temporarily unavailable for maintenance." } }
+          }
+        }
+      }
+    }
+  }
+}
