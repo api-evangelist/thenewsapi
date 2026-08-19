@@ -1,0 +1,63 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TheNews news sources API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "api_token",
+      "value": "{{api_token}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "sources",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Sources",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.thenewsapi.com/v1/news/sources",
+            "params": [
+              {
+                "name": "categories",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of categories to include. Options: general, science, sports, business, health, entertainment, tech, politics, food, travel."
+              },
+              {
+                "name": "exclude_categories",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of categories to exclude."
+              },
+              {
+                "name": "language",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated language codes to filter results (e.g., en,es,fr). Supports 35+ languages."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination. Maximum total of 20,000 results across all pages."
+              }
+            ]
+          },
+          "docs": "List all available news sources that can be used for filtering, including metadata on category and language coverage. Returns a fixed limit of 50 per page."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

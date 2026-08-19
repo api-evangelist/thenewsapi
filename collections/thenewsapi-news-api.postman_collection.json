@@ -1,0 +1,3863 @@
+{
+  "item": [
+    {
+      "id": "9a02caa0-274e-4d31-b13e-b0e40132efcc",
+      "name": "news",
+      "description": {
+        "content": "News article retrieval and search",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4690c45d-d6cc-4036-bae6-374bdfe34e07",
+          "name": "All News",
+          "request": {
+            "name": "All News",
+            "description": {
+              "content": "Search and filter the entire article database with comprehensive filtering options including search, categories, language, country, domain, and date range.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "news",
+                "all"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Search query with advanced operators. Supports + (AND), | (OR), - (NOT), \"...\" (phrase), * (prefix), () (grouping), \\ (escape). URL-encode when using special characters."
+                },
+                {
+                  "disabled": false,
+                  "key": "search_fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to search. Options: title, description, keywords, main_text."
+                },
+                {
+                  "disabled": false,
+                  "key": "locale",
+                  "value": "<string>",
+                  "description": "Comma-separated country codes to filter articles by locale (e.g., us,ca,gb). Supports 50+ countries."
+                },
+                {
+                  "disabled": false,
+                  "key": "categories",
+                  "value": "<string>",
+                  "description": "Comma-separated list of categories to include. Options: general, science, sports, business, health, entertainment, tech, politics, food, travel."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_categories",
+                  "value": "<string>",
+                  "description": "Comma-separated list of categories to exclude."
+                },
+                {
+                  "disabled": false,
+                  "key": "domains",
+                  "value": "<string>",
+                  "description": "Comma-separated list of source domains to include (e.g., techcrunch.com,bbc.com)."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_domains",
+                  "value": "<string>",
+                  "description": "Comma-separated list of source domains to exclude."
+                },
+                {
+                  "disabled": false,
+                  "key": "source_ids",
+                  "value": "<string>",
+                  "description": "Comma-separated list of source IDs to include (as returned by the /news/sources endpoint)."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_source_ids",
+                  "value": "<string>",
+                  "description": "Comma-separated list of source IDs to exclude."
+                },
+                {
+                  "disabled": false,
+                  "key": "language",
+                  "value": "<string>",
+                  "description": "Comma-separated language codes to filter results (e.g., en,es,fr). Supports 35+ languages."
+                },
+                {
+                  "disabled": false,
+                  "key": "published_before",
+                  "value": "<string>",
+                  "description": "Return articles published before this date/time (UTC). Formats: Y-m-d\\TH:i:s, Y-m-d\\TH:i, Y-m-d\\TH, Y-m-d, Y-m, Y."
+                },
+                {
+                  "disabled": false,
+                  "key": "published_after",
+                  "value": "<string>",
+                  "description": "Return articles published after this date/time (UTC). Formats: Y-m-d\\TH:i:s, Y-m-d\\TH:i, Y-m-d\\TH, Y-m-d, Y-m, Y."
+                },
+                {
+                  "disabled": false,
+                  "key": "published_on",
+                  "value": "<date>",
+                  "description": "Return articles published on this exact date (UTC). Format: Y-m-d."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "published_on",
+                  "description": "Sort order for results. Options: published_on (chronological), relevance_score (by search relevance)."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of results to return per page. Upper bound is determined by the current plan."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for pagination. Maximum total of 20,000 results across all pages."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0105b8cb-46a2-481f-be2f-08e2c9a7365d",
+              "name": "Successful response with paginated article list",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "news",
+                    "all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search_fields",
+                      "value": "title,description"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "us,ca"
+                    },
+                    {
+                      "key": "categories",
+                      "value": "tech,business"
+                    },
+                    {
+                      "key": "exclude_categories",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domains",
+                      "value": "techcrunch.com,bbc.com"
+                    },
+                    {
+                      "key": "exclude_domains",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exclude_source_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en,es"
+                    },
+                    {
+                      "key": "published_before",
+                      "value": "2026-06-13T23:15:37"
+                    },
+                    {
+                      "key": "published_after",
+                      "value": "2026-01-01T00:00:00"
+                    },
+                    {
+                      "key": "published_on",
+                      "value": "2026-06-13"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "published_on"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "api_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Rate limit ceiling for the current period",
+                  "key": "X-RateLimit-Limit",
+                  "value": "686"
+                },
+                {
+                  "disabled": false,
+                  "description": "Usage limit for the current plan",
+                  "key": "X-UsageLimit-Limit",
+                  "value": "686"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"found\": 1250000,\n    \"returned\": 3,\n    \"limit\": 3,\n    \"page\": 1\n  },\n  \"data\": [\n    {\n      \"uuid\": \"b5a9c0d1-e2f3-4a5b-8c6d-7e9f0a1b2c3d\",\n      \"title\": \"Global Markets Rally on Positive Economic Data\",\n      \"description\": \"Stock markets around the world surged following better-than-expected employment figures.\",\n      \"keywords\": \"markets, economy, stocks, employment\",\n      \"snippet\": \"Global markets rallied on Friday after key economic indicators surprised analysts...\",\n      \"url\": \"https://example.com/article/global-markets-rally\",\n      \"image_url\": \"https://example.com/images/markets.jpg\",\n      \"language\": \"en\",\n      \"published_at\": \"2026-06-13T09:30:00.000000Z\",\n      \"source\": \"example.com\",\n      \"categories\": [\n        \"business\",\n        \"general\"\n      ],\n      \"relevance_score\": null,\n      \"locale\": \"us\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a0a18dee-f8a1-40ca-b278-5af7059fc39c",
+              "name": "Malformed parameters — invalid parameter formatting.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "news",
+                    "all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search_fields",
+                      "value": "title,description"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "us,ca"
+                    },
+                    {
+                      "key": "categories",
+                      "value": "tech,business"
+                    },
+                    {
+                      "key": "exclude_categories",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domains",
+                      "value": "techcrunch.com,bbc.com"
+                    },
+                    {
+                      "key": "exclude_domains",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exclude_source_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en,es"
+                    },
+                    {
+                      "key": "published_before",
+                      "value": "2026-06-13T23:15:37"
+                    },
+                    {
+                      "key": "published_after",
+                      "value": "2026-01-01T00:00:00"
+                    },
+                    {
+                      "key": "published_on",
+                      "value": "2026-06-13"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "published_on"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "api_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"malformed_parameters\",\n    \"message\": \"Invalid parameter formatting.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ed6b8e77-8630-431d-8b1f-c62a56aa394f",
+              "name": "Invalid or missing API token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "news",
+                    "all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search_fields",
+                      "value": "title,description"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "us,ca"
+                    },
+                    {
+                      "key": "categories",
+                      "value": "tech,business"
+                    },
+                    {
+                      "key": "exclude_categories",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domains",
+                      "value": "techcrunch.com,bbc.com"
+                    },
+                    {
+                      "key": "exclude_domains",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exclude_source_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en,es"
+                    },
+                    {
+                      "key": "published_before",
+                      "value": "2026-06-13T23:15:37"
+                    },
+                    {
+                      "key": "published_after",
+                      "value": "2026-01-01T00:00:00"
+                    },
+                    {
+                      "key": "published_on",
+                      "value": "2026-06-13"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "published_on"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "api_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"invalid_api_token\",\n    \"message\": \"Your API token is invalid.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c430af7a-8fd9-44ea-8dd2-1c64706bd641",
+              "name": "Plan usage limit reached.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "news",
+                    "all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search_fields",
+                      "value": "title,description"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "us,ca"
+                    },
+                    {
+                      "key": "categories",
+                      "value": "tech,business"
+                    },
+                    {
+                      "key": "exclude_categories",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domains",
+                      "value": "techcrunch.com,bbc.com"
+                    },
+                    {
+                      "key": "exclude_domains",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exclude_source_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en,es"
+                    },
+                    {
+                      "key": "published_before",
+                      "value": "2026-06-13T23:15:37"
+                    },
+                    {
+                      "key": "published_after",
+                      "value": "2026-01-01T00:00:00"
+                    },
+                    {
+                      "key": "published_on",
+                      "value": "2026-06-13"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "published_on"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "api_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Payment Required",
+              "code": 402,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"usage_limit_reached\",\n    \"message\": \"You have reached your plan usage limit.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5047b5b5-8899-46fd-bf55-e9fa7ad97404",
+              "name": "Endpoint access restricted — not available on current plan.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "news",
+                    "all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search_fields",
+                      "value": "title,description"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "us,ca"
+                    },
+                    {
+                      "key": "categories",
+                      "value": "tech,business"
+                    },
+                    {
+                      "key": "exclude_categories",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domains",
+                      "value": "techcrunch.com,bbc.com"
+                    },
+                    {
+                      "key": "exclude_domains",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exclude_source_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en,es"
+                    },
+                    {
+                      "key": "published_before",
+                      "value": "2026-06-13T23:15:37"
+                    },
+                    {
+                      "key": "published_after",
+                      "value": "2026-01-01T00:00:00"
+                    },
+                    {
+                      "key": "published_on",
+                      "value": "2026-06-13"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "published_on"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "api_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"endpoint_access_restricted\",\n    \"message\": \"This endpoint is not available on your current plan.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "15154955-370d-45b2-b664-436afa92d11a",
+              "name": "Rate limit reached — too many requests within the 60-second window.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "news",
+                    "all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search_fields",
+                      "value": "title,description"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "us,ca"
+                    },
+                    {
+                      "key": "categories",
+                      "value": "tech,business"
+                    },
+                    {
+                      "key": "exclude_categories",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domains",
+                      "value": "techcrunch.com,bbc.com"
+                    },
+                    {
+                      "key": "exclude_domains",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exclude_source_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en,es"
+                    },
+                    {
+                      "key": "published_before",
+                      "value": "2026-06-13T23:15:37"
+                    },
+                    {
+                      "key": "published_after",
+                      "value": "2026-01-01T00:00:00"
+                    },
+                    {
+                      "key": "published_on",
+                      "value": "2026-06-13"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "published_on"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "api_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"rate_limit_reached\",\n    \"message\": \"You have exceeded the rate limit. Please wait before retrying.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ea887c84-ac8f-469b-9b24-ca9149b213af",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "news",
+                    "all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search_fields",
+                      "value": "title,description"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "us,ca"
+                    },
+                    {
+                      "key": "categories",
+                      "value": "tech,business"
+                    },
+                    {
+                      "key": "exclude_categories",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domains",
+                      "value": "techcrunch.com,bbc.com"
+                    },
+                    {
+                      "key": "exclude_domains",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exclude_source_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en,es"
+                    },
+                    {
+                      "key": "published_before",
+                      "value": "2026-06-13T23:15:37"
+                    },
+                    {
+                      "key": "published_after",
+                      "value": "2026-01-01T00:00:00"
+                    },
+                    {
+                      "key": "published_on",
+                      "value": "2026-06-13"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "published_on"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "api_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"server_error\",\n    \"message\": \"An internal server error occurred.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fbb6fec5-f93a-491d-b593-cbb90abef300",
+              "name": "Service temporarily unavailable — maintenance mode.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "news",
+                    "all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search_fields",
+                      "value": "title,description"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "us,ca"
+                    },
+                    {
+                      "key": "categories",
+                      "value": "tech,business"
+                    },
+                    {
+                      "key": "exclude_categories",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domains",
+                      "value": "techcrunch.com,bbc.com"
+                    },
+                    {
+                      "key": "exclude_domains",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exclude_source_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en,es"
+                    },
+                    {
+                      "key": "published_before",
+                      "value": "2026-06-13T23:15:37"
+                    },
+                    {
+                      "key": "published_after",
+                      "value": "2026-01-01T00:00:00"
+                    },
+                    {
+                      "key": "published_on",
+                      "value": "2026-06-13"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "published_on"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "api_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"maintenance_mode\",\n    \"message\": \"The service is temporarily unavailable for maintenance.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7abf4ecb-be6c-423a-9acd-f32f4113503f",
+          "name": "Top Stories",
+          "request": {
+            "name": "Top Stories",
+            "description": {
+              "content": "Retrieve live and historical top stories with advanced filtering by category, language, country, and full-text search with boolean operators.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "news",
+                "top"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Search query with advanced operators. Supports + (AND), | (OR), - (NOT), \"...\" (phrase), * (prefix), () (grouping), \\ (escape). URL-encode when using special characters."
+                },
+                {
+                  "disabled": false,
+                  "key": "search_fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to search. Options: title, description, keywords, main_text."
+                },
+                {
+                  "disabled": false,
+                  "key": "locale",
+                  "value": "<string>",
+                  "description": "Comma-separated country codes to filter articles by locale (e.g., us,ca,gb). Supports 50+ countries."
+                },
+                {
+                  "disabled": false,
+                  "key": "categories",
+                  "value": "<string>",
+                  "description": "Comma-separated list of categories to include. Options: general, science, sports, business, health, entertainment, tech, politics, food, travel."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_categories",
+                  "value": "<string>",
+                  "description": "Comma-separated list of categories to exclude."
+                },
+                {
+                  "disabled": false,
+                  "key": "domains",
+                  "value": "<string>",
+                  "description": "Comma-separated list of source domains to include (e.g., techcrunch.com,bbc.com)."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_domains",
+                  "value": "<string>",
+                  "description": "Comma-separated list of source domains to exclude."
+                },
+                {
+                  "disabled": false,
+                  "key": "source_ids",
+                  "value": "<string>",
+                  "description": "Comma-separated list of source IDs to include (as returned by the /news/sources endpoint)."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_source_ids",
+                  "value": "<string>",
+                  "description": "Comma-separated list of source IDs to exclude."
+                },
+                {
+                  "disabled": false,
+                  "key": "language",
+                  "value": "<string>",
+                  "description": "Comma-separated language codes to filter results (e.g., en,es,fr). Supports 35+ languages."
+                },
+                {
+                  "disabled": false,
+                  "key": "published_before",
+                  "value": "<string>",
+                  "description": "Return articles published before this date/time (UTC). Formats: Y-m-d\\TH:i:s, Y-m-d\\TH:i, Y-m-d\\TH, Y-m-d, Y-m, Y."
+                },
+                {
+                  "disabled": false,
+                  "key": "published_after",
+                  "value": "<string>",
+                  "description": "Return articles published after this date/time (UTC). Formats: Y-m-d\\TH:i:s, Y-m-d\\TH:i, Y-m-d\\TH, Y-m-d, Y-m, Y."
+                },
+                {
+                  "disabled": false,
+                  "key": "published_on",
+                  "value": "<date>",
+                  "description": "Return articles published on this exact date (UTC). Format: Y-m-d."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "published_on",
+                  "description": "Sort order for results. Options: published_on (chronological), relevance_score (by search relevance)."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of results to return per page. Upper bound is determined by the current plan."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for pagination. Maximum total of 20,000 results across all pages."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "aa3ff39f-8e85-4f68-ae3e-9b7fbb7c3552",
+              "name": "Successful response with paginated top stories",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "news",
+                    "top"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search_fields",
+                      "value": "title,description"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "us,ca"
+                    },
+                    {
+                      "key": "categories",
+                      "value": "tech,business"
+                    },
+                    {
+                      "key": "exclude_categories",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domains",
+                      "value": "techcrunch.com,bbc.com"
+                    },
+                    {
+                      "key": "exclude_domains",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exclude_source_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en,es"
+                    },
+                    {
+                      "key": "published_before",
+                      "value": "2026-06-13T23:15:37"
+                    },
+                    {
+                      "key": "published_after",
+                      "value": "2026-01-01T00:00:00"
+                    },
+                    {
+                      "key": "published_on",
+                      "value": "2026-06-13"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "published_on"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "api_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"found\": 105,\n    \"returned\": 3254,\n    \"limit\": 3866,\n    \"page\": 7599\n  },\n  \"data\": [\n    {\n      \"uuid\": \"a214a33f-c21b-47c9-5e20-da8e84cddee6\",\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"keywords\": \"string\",\n      \"snippet\": \"string\",\n      \"url\": \"http://eT.jaMTvoiQizlIBbFhNiZ\",\n      \"image_url\": \"http://CnRvoIsskPmjdpwyiDPrLZRzkqtC.hlevskZU2NDT\",\n      \"language\": \"string\",\n      \"published_at\": \"1956-09-05T20:30:27.779Z\",\n      \"source\": \"string\",\n      \"categories\": [\n        \"travel\",\n        \"sports\"\n      ],\n      \"relevance_score\": 2951.7423812182333,\n      \"locale\": \"string\",\n      \"similar\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/Article detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/Article detected>\"\n        }\n      ]\n    },\n    {\n      \"uuid\": \"4db83649-d59d-8bba-a740-cc8f9351b2d4\",\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"keywords\": \"string\",\n      \"snippet\": \"string\",\n      \"url\": \"https://FaLN.vziaw45Q6myfKU2ML67rETFUe9lEKNbm4V9L5yNHDCbJ5DnY+4xY5BwKcDRypCLP\",\n      \"image_url\": \"https://sfQWOwbJrra.jxps0PHH9iR.b-4B4SSqIpGmOf2tsjnJdWQbBqPVBFrzdB+\",\n      \"language\": \"string\",\n      \"published_at\": \"1994-01-20T00:02:58.632Z\",\n      \"source\": \"string\",\n      \"categories\": [\n        \"general\",\n        \"business\"\n      ],\n      \"relevance_score\": 6095.370279522265,\n      \"locale\": \"string\",\n      \"similar\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/Article detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/Article detected>\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2ac07b04-f2d1-4691-a355-467a5a6de719",
+              "name": "Malformed parameters — invalid parameter formatting.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "news",
+                    "top"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search_fields",
+                      "value": "title,description"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "us,ca"
+                    },
+                    {
+                      "key": "categories",
+                      "value": "tech,business"
+                    },
+                    {
+                      "key": "exclude_categories",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domains",
+                      "value": "techcrunch.com,bbc.com"
+                    },
+                    {
+                      "key": "exclude_domains",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exclude_source_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en,es"
+                    },
+                    {
+                      "key": "published_before",
+                      "value": "2026-06-13T23:15:37"
+                    },
+                    {
+                      "key": "published_after",
+                      "value": "2026-01-01T00:00:00"
+                    },
+                    {
+                      "key": "published_on",
+                      "value": "2026-06-13"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "published_on"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "api_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"malformed_parameters\",\n    \"message\": \"Invalid parameter formatting.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9fd8ace1-c027-465e-a410-80192d68ed41",
+              "name": "Invalid or missing API token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "news",
+                    "top"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search_fields",
+                      "value": "title,description"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "us,ca"
+                    },
+                    {
+                      "key": "categories",
+                      "value": "tech,business"
+                    },
+                    {
+                      "key": "exclude_categories",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domains",
+                      "value": "techcrunch.com,bbc.com"
+                    },
+                    {
+                      "key": "exclude_domains",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exclude_source_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en,es"
+                    },
+                    {
+                      "key": "published_before",
+                      "value": "2026-06-13T23:15:37"
+                    },
+                    {
+                      "key": "published_after",
+                      "value": "2026-01-01T00:00:00"
+                    },
+                    {
+                      "key": "published_on",
+                      "value": "2026-06-13"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "published_on"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "api_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"invalid_api_token\",\n    \"message\": \"Your API token is invalid.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a6a6443e-3030-4847-9240-6aefcdac2c90",
+              "name": "Plan usage limit reached.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "news",
+                    "top"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search_fields",
+                      "value": "title,description"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "us,ca"
+                    },
+                    {
+                      "key": "categories",
+                      "value": "tech,business"
+                    },
+                    {
+                      "key": "exclude_categories",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domains",
+                      "value": "techcrunch.com,bbc.com"
+                    },
+                    {
+                      "key": "exclude_domains",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exclude_source_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en,es"
+                    },
+                    {
+                      "key": "published_before",
+                      "value": "2026-06-13T23:15:37"
+                    },
+                    {
+                      "key": "published_after",
+                      "value": "2026-01-01T00:00:00"
+                    },
+                    {
+                      "key": "published_on",
+                      "value": "2026-06-13"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "published_on"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "api_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Payment Required",
+              "code": 402,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"usage_limit_reached\",\n    \"message\": \"You have reached your plan usage limit.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e7b4b206-3e81-4e71-ac45-e3cc459fe4ce",
+              "name": "Endpoint access restricted — not available on current plan.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "news",
+                    "top"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search_fields",
+                      "value": "title,description"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "us,ca"
+                    },
+                    {
+                      "key": "categories",
+                      "value": "tech,business"
+                    },
+                    {
+                      "key": "exclude_categories",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domains",
+                      "value": "techcrunch.com,bbc.com"
+                    },
+                    {
+                      "key": "exclude_domains",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exclude_source_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en,es"
+                    },
+                    {
+                      "key": "published_before",
+                      "value": "2026-06-13T23:15:37"
+                    },
+                    {
+                      "key": "published_after",
+                      "value": "2026-01-01T00:00:00"
+                    },
+                    {
+                      "key": "published_on",
+                      "value": "2026-06-13"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "published_on"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "api_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"endpoint_access_restricted\",\n    \"message\": \"This endpoint is not available on your current plan.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f677819e-bfc6-4174-a7a2-af3e5bdaed07",
+              "name": "Rate limit reached — too many requests within the 60-second window.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "news",
+                    "top"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search_fields",
+                      "value": "title,description"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "us,ca"
+                    },
+                    {
+                      "key": "categories",
+                      "value": "tech,business"
+                    },
+                    {
+                      "key": "exclude_categories",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domains",
+                      "value": "techcrunch.com,bbc.com"
+                    },
+                    {
+                      "key": "exclude_domains",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exclude_source_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en,es"
+                    },
+                    {
+                      "key": "published_before",
+                      "value": "2026-06-13T23:15:37"
+                    },
+                    {
+                      "key": "published_after",
+                      "value": "2026-01-01T00:00:00"
+                    },
+                    {
+                      "key": "published_on",
+                      "value": "2026-06-13"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "published_on"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "api_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"rate_limit_reached\",\n    \"message\": \"You have exceeded the rate limit. Please wait before retrying.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5f8831dd-344f-424f-9d92-5ce7003fea0e",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "news",
+                    "top"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search_fields",
+                      "value": "title,description"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "us,ca"
+                    },
+                    {
+                      "key": "categories",
+                      "value": "tech,business"
+                    },
+                    {
+                      "key": "exclude_categories",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domains",
+                      "value": "techcrunch.com,bbc.com"
+                    },
+                    {
+                      "key": "exclude_domains",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exclude_source_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en,es"
+                    },
+                    {
+                      "key": "published_before",
+                      "value": "2026-06-13T23:15:37"
+                    },
+                    {
+                      "key": "published_after",
+                      "value": "2026-01-01T00:00:00"
+                    },
+                    {
+                      "key": "published_on",
+                      "value": "2026-06-13"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "published_on"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "api_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"server_error\",\n    \"message\": \"An internal server error occurred.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e1393bd9-0efb-45f5-bd39-87fcd0c4ff5b",
+              "name": "Service temporarily unavailable — maintenance mode.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "news",
+                    "top"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search_fields",
+                      "value": "title,description"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "us,ca"
+                    },
+                    {
+                      "key": "categories",
+                      "value": "tech,business"
+                    },
+                    {
+                      "key": "exclude_categories",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domains",
+                      "value": "techcrunch.com,bbc.com"
+                    },
+                    {
+                      "key": "exclude_domains",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exclude_source_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en,es"
+                    },
+                    {
+                      "key": "published_before",
+                      "value": "2026-06-13T23:15:37"
+                    },
+                    {
+                      "key": "published_after",
+                      "value": "2026-01-01T00:00:00"
+                    },
+                    {
+                      "key": "published_on",
+                      "value": "2026-06-13"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "published_on"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "api_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"maintenance_mode\",\n    \"message\": \"The service is temporarily unavailable for maintenance.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9f256828-356c-42ed-a8d2-b3aa16d83cc5",
+          "name": "Headlines",
+          "request": {
+            "name": "Headlines",
+            "description": {
+              "content": "Get the latest headlines organized by category with optional similar article grouping. Available on Standard plan and above.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "news",
+                "headlines"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "locale",
+                  "value": "<string>",
+                  "description": "Comma-separated country codes to filter articles by locale (e.g., us,ca,gb). Supports 50+ countries."
+                },
+                {
+                  "disabled": false,
+                  "key": "domains",
+                  "value": "<string>",
+                  "description": "Comma-separated list of source domains to include (e.g., techcrunch.com,bbc.com)."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_domains",
+                  "value": "<string>",
+                  "description": "Comma-separated list of source domains to exclude."
+                },
+                {
+                  "disabled": false,
+                  "key": "source_ids",
+                  "value": "<string>",
+                  "description": "Comma-separated list of source IDs to include (as returned by the /news/sources endpoint)."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_source_ids",
+                  "value": "<string>",
+                  "description": "Comma-separated list of source IDs to exclude."
+                },
+                {
+                  "disabled": false,
+                  "key": "language",
+                  "value": "<string>",
+                  "description": "Comma-separated language codes to filter results (e.g., en,es,fr). Supports 35+ languages."
+                },
+                {
+                  "disabled": false,
+                  "key": "published_on",
+                  "value": "<date>",
+                  "description": "Return articles published on this exact date (UTC). Format: Y-m-d."
+                },
+                {
+                  "disabled": false,
+                  "key": "headlines_per_category",
+                  "value": "6",
+                  "description": "Number of headlines to return per category (1-10, default 6)."
+                },
+                {
+                  "disabled": false,
+                  "key": "include_similar",
+                  "value": "true",
+                  "description": "Whether to include similar articles for each headline (default true)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f307693e-890f-4522-aede-e3283b654d81",
+              "name": "Successful response with categorized headlines",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "news",
+                    "headlines"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "locale",
+                      "value": "us,ca"
+                    },
+                    {
+                      "key": "domains",
+                      "value": "techcrunch.com,bbc.com"
+                    },
+                    {
+                      "key": "exclude_domains",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exclude_source_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en,es"
+                    },
+                    {
+                      "key": "published_on",
+                      "value": "2026-06-13"
+                    },
+                    {
+                      "key": "headlines_per_category",
+                      "value": "6"
+                    },
+                    {
+                      "key": "include_similar",
+                      "value": "true"
+                    },
+                    {
+                      "key": "api_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"found\": 4212,\n    \"returned\": 385,\n    \"limit\": 8218,\n    \"page\": 1564\n  },\n  \"data\": [\n    {\n      \"uuid\": \"8ddbdc34-3870-aa33-2f92-afb8ec550318\",\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"keywords\": \"string\",\n      \"snippet\": \"string\",\n      \"url\": \"https://vYectJpiRnuHTZFWwp.mqdlcoTwk\",\n      \"image_url\": \"https://YNEKQxXEHuiYYQN.rdmrFIsKfltsDuhZA+uGEhvFdeU+2CVsEn\",\n      \"language\": \"string\",\n      \"published_at\": \"1978-11-05T01:53:12.964Z\",\n      \"source\": \"string\",\n      \"categories\": [\n        \"science\",\n        \"tech\"\n      ],\n      \"relevance_score\": 3521.216648799169,\n      \"locale\": \"string\",\n      \"similar\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/Article detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/Article detected>\"\n        }\n      ]\n    },\n    {\n      \"uuid\": \"c461fcfc-b503-dba5-ace0-ce4e47b31140\",\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"keywords\": \"string\",\n      \"snippet\": \"string\",\n      \"url\": \"http://ytxshasRrnCCgAwDCKzSauMZOEwqvp.mtjXrC5sDRbWOn6sYpKRmKJ7c2UTQ1xgy1RYyKbHEgMLBij\",\n      \"image_url\": \"https://mwGo.cbi-ykaQz5h4krkbvbqtpHMKIv2nvbrHdUFdhxubd4H7Yl-BxCVyBe.m44\",\n      \"language\": \"string\",\n      \"published_at\": \"1964-10-17T14:13:36.398Z\",\n      \"source\": \"string\",\n      \"categories\": [\n        \"tech\",\n        \"business\"\n      ],\n      \"relevance_score\": 6394.134652476814,\n      \"locale\": \"string\",\n      \"similar\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/Article detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/Article detected>\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d56b1696-b06f-476b-82ba-17c95595b838",
+              "name": "Malformed parameters — invalid parameter formatting.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "news",
+                    "headlines"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "locale",
+                      "value": "us,ca"
+                    },
+                    {
+                      "key": "domains",
+                      "value": "techcrunch.com,bbc.com"
+                    },
+                    {
+                      "key": "exclude_domains",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exclude_source_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en,es"
+                    },
+                    {
+                      "key": "published_on",
+                      "value": "2026-06-13"
+                    },
+                    {
+                      "key": "headlines_per_category",
+                      "value": "6"
+                    },
+                    {
+                      "key": "include_similar",
+                      "value": "true"
+                    },
+                    {
+                      "key": "api_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"malformed_parameters\",\n    \"message\": \"Invalid parameter formatting.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "418f8be3-e38d-4cb7-82f6-d810814ce975",
+              "name": "Invalid or missing API token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "news",
+                    "headlines"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "locale",
+                      "value": "us,ca"
+                    },
+                    {
+                      "key": "domains",
+                      "value": "techcrunch.com,bbc.com"
+                    },
+                    {
+                      "key": "exclude_domains",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exclude_source_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en,es"
+                    },
+                    {
+                      "key": "published_on",
+                      "value": "2026-06-13"
+                    },
+                    {
+                      "key": "headlines_per_category",
+                      "value": "6"
+                    },
+                    {
+                      "key": "include_similar",
+                      "value": "true"
+                    },
+                    {
+                      "key": "api_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"invalid_api_token\",\n    \"message\": \"Your API token is invalid.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7d549cff-e8e0-4666-a6e0-982a9ba6fe5d",
+              "name": "Plan usage limit reached.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "news",
+                    "headlines"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "locale",
+                      "value": "us,ca"
+                    },
+                    {
+                      "key": "domains",
+                      "value": "techcrunch.com,bbc.com"
+                    },
+                    {
+                      "key": "exclude_domains",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exclude_source_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en,es"
+                    },
+                    {
+                      "key": "published_on",
+                      "value": "2026-06-13"
+                    },
+                    {
+                      "key": "headlines_per_category",
+                      "value": "6"
+                    },
+                    {
+                      "key": "include_similar",
+                      "value": "true"
+                    },
+                    {
+                      "key": "api_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Payment Required",
+              "code": 402,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"usage_limit_reached\",\n    \"message\": \"You have reached your plan usage limit.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e6c7b0f5-d2e2-490c-9e2d-21e79022d264",
+              "name": "Endpoint access restricted — not available on current plan.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "news",
+                    "headlines"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "locale",
+                      "value": "us,ca"
+                    },
+                    {
+                      "key": "domains",
+                      "value": "techcrunch.com,bbc.com"
+                    },
+                    {
+                      "key": "exclude_domains",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exclude_source_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en,es"
+                    },
+                    {
+                      "key": "published_on",
+                      "value": "2026-06-13"
+                    },
+                    {
+                      "key": "headlines_per_category",
+                      "value": "6"
+                    },
+                    {
+                      "key": "include_similar",
+                      "value": "true"
+                    },
+                    {
+                      "key": "api_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"endpoint_access_restricted\",\n    \"message\": \"This endpoint is not available on your current plan.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "785d7c01-1cc9-4cd3-ac8b-84b690074ae0",
+              "name": "Rate limit reached — too many requests within the 60-second window.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "news",
+                    "headlines"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "locale",
+                      "value": "us,ca"
+                    },
+                    {
+                      "key": "domains",
+                      "value": "techcrunch.com,bbc.com"
+                    },
+                    {
+                      "key": "exclude_domains",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exclude_source_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en,es"
+                    },
+                    {
+                      "key": "published_on",
+                      "value": "2026-06-13"
+                    },
+                    {
+                      "key": "headlines_per_category",
+                      "value": "6"
+                    },
+                    {
+                      "key": "include_similar",
+                      "value": "true"
+                    },
+                    {
+                      "key": "api_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"rate_limit_reached\",\n    \"message\": \"You have exceeded the rate limit. Please wait before retrying.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ee2fb2c5-50d0-4b13-afff-f46bb6041860",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "news",
+                    "headlines"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "locale",
+                      "value": "us,ca"
+                    },
+                    {
+                      "key": "domains",
+                      "value": "techcrunch.com,bbc.com"
+                    },
+                    {
+                      "key": "exclude_domains",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exclude_source_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en,es"
+                    },
+                    {
+                      "key": "published_on",
+                      "value": "2026-06-13"
+                    },
+                    {
+                      "key": "headlines_per_category",
+                      "value": "6"
+                    },
+                    {
+                      "key": "include_similar",
+                      "value": "true"
+                    },
+                    {
+                      "key": "api_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"server_error\",\n    \"message\": \"An internal server error occurred.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2497352d-4104-4b45-8d1a-5c3f64d18db1",
+              "name": "Service temporarily unavailable — maintenance mode.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "news",
+                    "headlines"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "locale",
+                      "value": "us,ca"
+                    },
+                    {
+                      "key": "domains",
+                      "value": "techcrunch.com,bbc.com"
+                    },
+                    {
+                      "key": "exclude_domains",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exclude_source_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en,es"
+                    },
+                    {
+                      "key": "published_on",
+                      "value": "2026-06-13"
+                    },
+                    {
+                      "key": "headlines_per_category",
+                      "value": "6"
+                    },
+                    {
+                      "key": "include_similar",
+                      "value": "true"
+                    },
+                    {
+                      "key": "api_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"maintenance_mode\",\n    \"message\": \"The service is temporarily unavailable for maintenance.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dca22769-ab09-43c9-a9a5-d9bd119fa1c1",
+          "name": "Similar News",
+          "request": {
+            "name": "Similar News",
+            "description": {
+              "content": "Find articles related to a specific article by UUID with optional category, domain, language, and date filters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "news",
+                "similar",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "categories",
+                  "value": "<string>",
+                  "description": "Comma-separated list of categories to include. Options: general, science, sports, business, health, entertainment, tech, politics, food, travel."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_categories",
+                  "value": "<string>",
+                  "description": "Comma-separated list of categories to exclude."
+                },
+                {
+                  "disabled": false,
+                  "key": "domains",
+                  "value": "<string>",
+                  "description": "Comma-separated list of source domains to include (e.g., techcrunch.com,bbc.com)."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_domains",
+                  "value": "<string>",
+                  "description": "Comma-separated list of source domains to exclude."
+                },
+                {
+                  "disabled": false,
+                  "key": "source_ids",
+                  "value": "<string>",
+                  "description": "Comma-separated list of source IDs to include (as returned by the /news/sources endpoint)."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_source_ids",
+                  "value": "<string>",
+                  "description": "Comma-separated list of source IDs to exclude."
+                },
+                {
+                  "disabled": false,
+                  "key": "language",
+                  "value": "<string>",
+                  "description": "Comma-separated language codes to filter results (e.g., en,es,fr). Supports 35+ languages."
+                },
+                {
+                  "disabled": false,
+                  "key": "published_before",
+                  "value": "<string>",
+                  "description": "Return articles published before this date/time (UTC). Formats: Y-m-d\\TH:i:s, Y-m-d\\TH:i, Y-m-d\\TH, Y-m-d, Y-m, Y."
+                },
+                {
+                  "disabled": false,
+                  "key": "published_after",
+                  "value": "<string>",
+                  "description": "Return articles published after this date/time (UTC). Formats: Y-m-d\\TH:i:s, Y-m-d\\TH:i, Y-m-d\\TH, Y-m-d, Y-m, Y."
+                },
+                {
+                  "disabled": false,
+                  "key": "published_on",
+                  "value": "<date>",
+                  "description": "Return articles published on this exact date (UTC). Format: Y-m-d."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of results to return per page. Upper bound is determined by the current plan."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for pagination. Maximum total of 20,000 results across all pages."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "uuid",
+                  "description": "(Required) The unique UUID identifier of the article to find similar articles for."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "199173e9-f78a-466c-a51a-6aa7c897dde6",
+              "name": "Successful response with similar articles ranked by relevance",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "news",
+                    "similar",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "categories",
+                      "value": "tech,business"
+                    },
+                    {
+                      "key": "exclude_categories",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domains",
+                      "value": "techcrunch.com,bbc.com"
+                    },
+                    {
+                      "key": "exclude_domains",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exclude_source_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en,es"
+                    },
+                    {
+                      "key": "published_before",
+                      "value": "2026-06-13T23:15:37"
+                    },
+                    {
+                      "key": "published_after",
+                      "value": "2026-01-01T00:00:00"
+                    },
+                    {
+                      "key": "published_on",
+                      "value": "2026-06-13"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "api_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) The unique UUID identifier of the article to find similar articles for."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"found\": 2144,\n    \"returned\": 6608,\n    \"limit\": 8174,\n    \"page\": 2141\n  },\n  \"data\": [\n    {\n      \"uuid\": \"fc1ab842-146e-921e-a9be-ec9e1a33b006\",\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"keywords\": \"string\",\n      \"snippet\": \"string\",\n      \"url\": \"https://EPO.zqyyypRhbEYntK-\",\n      \"image_url\": \"https://lgUG.kgqqe2hZtJw,9JXThMKTL+Z+MoKSqUXca4ta05d-3vCCzOn-zU70\",\n      \"language\": \"string\",\n      \"published_at\": \"1963-09-23T15:59:36.651Z\",\n      \"source\": \"string\",\n      \"categories\": [\n        \"tech\",\n        \"tech\"\n      ],\n      \"relevance_score\": 7842.397279074485,\n      \"locale\": \"string\",\n      \"similar\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/Article detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/Article detected>\"\n        }\n      ]\n    },\n    {\n      \"uuid\": \"02da20be-d371-059c-cea9-c1cbac28cafa\",\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"keywords\": \"string\",\n      \"snippet\": \"string\",\n      \"url\": \"https://BqHXDxnKBpOtcSDWedMCvwzGGlaaMND.qnFZFZcDOg7aZd,ee9a6OHf9iezg2Z.nXpsvA4jmMqYTmK8v8Yx1kPQDq,bLge\",\n      \"image_url\": \"https://VOHcaIwJfMVo.rzuTnOMT0CUY9d5gj8yYNwzGcldRwERIPDkY2d73XbR,h9eTrV\",\n      \"language\": \"string\",\n      \"published_at\": \"2002-08-28T12:47:35.282Z\",\n      \"source\": \"string\",\n      \"categories\": [\n        \"business\",\n        \"health\"\n      ],\n      \"relevance_score\": 5371.628030245032,\n      \"locale\": \"string\",\n      \"similar\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/Article detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/Article detected>\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6b844bb3-2675-4ac5-97e6-f36ee2c4876c",
+              "name": "Malformed parameters — invalid parameter formatting.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "news",
+                    "similar",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "categories",
+                      "value": "tech,business"
+                    },
+                    {
+                      "key": "exclude_categories",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domains",
+                      "value": "techcrunch.com,bbc.com"
+                    },
+                    {
+                      "key": "exclude_domains",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exclude_source_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en,es"
+                    },
+                    {
+                      "key": "published_before",
+                      "value": "2026-06-13T23:15:37"
+                    },
+                    {
+                      "key": "published_after",
+                      "value": "2026-01-01T00:00:00"
+                    },
+                    {
+                      "key": "published_on",
+                      "value": "2026-06-13"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "api_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) The unique UUID identifier of the article to find similar articles for."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"malformed_parameters\",\n    \"message\": \"Invalid parameter formatting.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3073895d-8cd2-4f60-a356-a5e238191a93",
+              "name": "Invalid or missing API token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "news",
+                    "similar",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "categories",
+                      "value": "tech,business"
+                    },
+                    {
+                      "key": "exclude_categories",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domains",
+                      "value": "techcrunch.com,bbc.com"
+                    },
+                    {
+                      "key": "exclude_domains",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exclude_source_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en,es"
+                    },
+                    {
+                      "key": "published_before",
+                      "value": "2026-06-13T23:15:37"
+                    },
+                    {
+                      "key": "published_after",
+                      "value": "2026-01-01T00:00:00"
+                    },
+                    {
+                      "key": "published_on",
+                      "value": "2026-06-13"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "api_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) The unique UUID identifier of the article to find similar articles for."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"invalid_api_token\",\n    \"message\": \"Your API token is invalid.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b63c85e5-9ede-4d49-98e9-21fbd84a53fa",
+              "name": "Resource not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "news",
+                    "similar",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "categories",
+                      "value": "tech,business"
+                    },
+                    {
+                      "key": "exclude_categories",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domains",
+                      "value": "techcrunch.com,bbc.com"
+                    },
+                    {
+                      "key": "exclude_domains",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exclude_source_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en,es"
+                    },
+                    {
+                      "key": "published_before",
+                      "value": "2026-06-13T23:15:37"
+                    },
+                    {
+                      "key": "published_after",
+                      "value": "2026-01-01T00:00:00"
+                    },
+                    {
+                      "key": "published_on",
+                      "value": "2026-06-13"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "api_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) The unique UUID identifier of the article to find similar articles for."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"resource_not_found\",\n    \"message\": \"The requested article was not found.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4df98df5-6aac-4f67-91e9-c97a029ed163",
+              "name": "Rate limit reached — too many requests within the 60-second window.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "news",
+                    "similar",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "categories",
+                      "value": "tech,business"
+                    },
+                    {
+                      "key": "exclude_categories",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domains",
+                      "value": "techcrunch.com,bbc.com"
+                    },
+                    {
+                      "key": "exclude_domains",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exclude_source_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en,es"
+                    },
+                    {
+                      "key": "published_before",
+                      "value": "2026-06-13T23:15:37"
+                    },
+                    {
+                      "key": "published_after",
+                      "value": "2026-01-01T00:00:00"
+                    },
+                    {
+                      "key": "published_on",
+                      "value": "2026-06-13"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "api_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) The unique UUID identifier of the article to find similar articles for."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"rate_limit_reached\",\n    \"message\": \"You have exceeded the rate limit. Please wait before retrying.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fc98acd7-e8a8-4d86-bc48-2b117790316e",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "news",
+                    "similar",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "categories",
+                      "value": "tech,business"
+                    },
+                    {
+                      "key": "exclude_categories",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domains",
+                      "value": "techcrunch.com,bbc.com"
+                    },
+                    {
+                      "key": "exclude_domains",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exclude_source_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en,es"
+                    },
+                    {
+                      "key": "published_before",
+                      "value": "2026-06-13T23:15:37"
+                    },
+                    {
+                      "key": "published_after",
+                      "value": "2026-01-01T00:00:00"
+                    },
+                    {
+                      "key": "published_on",
+                      "value": "2026-06-13"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "api_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) The unique UUID identifier of the article to find similar articles for."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"server_error\",\n    \"message\": \"An internal server error occurred.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b82b69c5-f3e9-427a-9814-45bf62eecf8d",
+              "name": "Service temporarily unavailable — maintenance mode.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "news",
+                    "similar",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "categories",
+                      "value": "tech,business"
+                    },
+                    {
+                      "key": "exclude_categories",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domains",
+                      "value": "techcrunch.com,bbc.com"
+                    },
+                    {
+                      "key": "exclude_domains",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exclude_source_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en,es"
+                    },
+                    {
+                      "key": "published_before",
+                      "value": "2026-06-13T23:15:37"
+                    },
+                    {
+                      "key": "published_after",
+                      "value": "2026-01-01T00:00:00"
+                    },
+                    {
+                      "key": "published_on",
+                      "value": "2026-06-13"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "api_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) The unique UUID identifier of the article to find similar articles for."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"maintenance_mode\",\n    \"message\": \"The service is temporarily unavailable for maintenance.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "be9d042e-054d-4bf0-a2d1-107d9c4947b9",
+          "name": "News by UUID",
+          "request": {
+            "name": "News by UUID",
+            "description": {
+              "content": "Retrieve a specific article by its unique UUID identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "news",
+                "uuid",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "uuid",
+                  "description": "(Required) The unique UUID identifier of the article to retrieve."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3cd6bba1-c61e-440e-b0c8-b698732db339",
+              "name": "Successful response with the requested article",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "news",
+                    "uuid",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) The unique UUID identifier of the article to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"uuid\": \"4e4208a0-a589-febb-bae4-7fb5c4d7e8ad\",\n  \"title\": \"string\",\n  \"description\": \"string\",\n  \"keywords\": \"string\",\n  \"snippet\": \"string\",\n  \"url\": \"https://KofLnmpmzQMHbHrQwIgmTz.euSDITPbIb6hArreV64w+WLmpv49fmp1b\",\n  \"image_url\": \"https://fTFuvLrIlSTqGyEaNuabexlLZkqhGs.elgjbUsQhEUAj1Ib4rnxjxHv.iDI\",\n  \"language\": \"string\",\n  \"published_at\": \"1977-12-09T11:47:45.606Z\",\n  \"source\": \"string\",\n  \"categories\": [\n    \"science\",\n    \"entertainment\"\n  ],\n  \"relevance_score\": 174.25665892042642,\n  \"locale\": \"string\",\n  \"similar\": [\n    {\n      \"uuid\": \"581eaa36-e5ad-12b2-1b44-6e54b2166fed\",\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"keywords\": \"string\",\n      \"snippet\": \"string\",\n      \"url\": \"https://YsNzsvoZK.ytq6yEnY6sphYZFqPIe9I67Oo--fGTitNlY0pOowhv9r6EgwnjtPdeM\",\n      \"image_url\": \"http://jOTz.rlaxGGVzyqU49L4A4rpdS8Rpsp0shD\",\n      \"language\": \"string\",\n      \"published_at\": \"1999-10-06T03:09:25.253Z\",\n      \"source\": \"string\",\n      \"categories\": [\n        \"tech\",\n        \"food\"\n      ],\n      \"relevance_score\": 5719.563961807159,\n      \"locale\": \"string\",\n      \"similar\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/Article detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/Article detected>\"\n        }\n      ]\n    },\n    {\n      \"uuid\": \"7dad5fd4-e68b-b66d-1dc7-ec6e084da362\",\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"keywords\": \"string\",\n      \"snippet\": \"string\",\n      \"url\": \"http://FjBEwklvpyQqoaqTwOIAtlNMVXVDv.slmTkzkGCbyRBlFutIQX62s5bsu7R2Nkcxg95JFauzH+,+HoXfvfp.pHhUpFQNXC\",\n      \"image_url\": \"http://fqLZWqV.hngu9ld3Zzrq1HVIdKbkYhleCPdsi8y+Ud1\",\n      \"language\": \"string\",\n      \"published_at\": \"1955-05-20T13:02:38.879Z\",\n      \"source\": \"string\",\n      \"categories\": [\n        \"tech\",\n        \"health\"\n      ],\n      \"relevance_score\": 5120.33693910165,\n      \"locale\": \"string\",\n      \"similar\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/Article detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/Article detected>\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0f71bd97-e23a-491f-ae61-0d9bf872a8e8",
+              "name": "Invalid or missing API token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "news",
+                    "uuid",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) The unique UUID identifier of the article to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"invalid_api_token\",\n    \"message\": \"Your API token is invalid.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b831fc66-3f1b-4fe4-b5e6-ce8b9095ea64",
+              "name": "Resource not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "news",
+                    "uuid",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) The unique UUID identifier of the article to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"resource_not_found\",\n    \"message\": \"The requested article was not found.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1cc7826a-68b1-4cd6-b877-d8e8646eef3e",
+              "name": "Rate limit reached — too many requests within the 60-second window.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "news",
+                    "uuid",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) The unique UUID identifier of the article to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"rate_limit_reached\",\n    \"message\": \"You have exceeded the rate limit. Please wait before retrying.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d4c22ff6-d9f7-40d9-b35d-5e84403d73fe",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "news",
+                    "uuid",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) The unique UUID identifier of the article to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"server_error\",\n    \"message\": \"An internal server error occurred.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dfcb626f-0eb1-40e8-b072-8ee8f22b0d8e",
+              "name": "Service temporarily unavailable — maintenance mode.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "news",
+                    "uuid",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) The unique UUID identifier of the article to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"maintenance_mode\",\n    \"message\": \"The service is temporarily unavailable for maintenance.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.thenewsapi.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "api_token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9ff92aa4-111f-4b53-875c-886c81ada0fa",
+    "name": "TheNews news API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Global news aggregation REST API providing real-time and historical news articles from thousands of sources with filtering by category, language, country, and search. Indexes over 1 million new articles per week from 40,000+ sources across 50+ countries and 35+ languages.",
+      "type": "text/plain"
+    }
+  }
+}

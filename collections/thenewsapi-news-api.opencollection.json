@@ -1,0 +1,421 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TheNews news API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "api_token",
+      "value": "{{api_token}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "news",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "All News",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.thenewsapi.com/v1/news/all",
+            "params": [
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Search query with advanced operators. Supports + (AND), | (OR), - (NOT), \"...\" (phrase), * (prefix), () (grouping), \\ (escape). URL-encode when using special characters."
+              },
+              {
+                "name": "search_fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to search. Options: title, description, keywords, main_text."
+              },
+              {
+                "name": "locale",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated country codes to filter articles by locale (e.g., us,ca,gb). Supports 50+ countries."
+              },
+              {
+                "name": "categories",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of categories to include. Options: general, science, sports, business, health, entertainment, tech, politics, food, travel."
+              },
+              {
+                "name": "exclude_categories",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of categories to exclude."
+              },
+              {
+                "name": "domains",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of source domains to include (e.g., techcrunch.com,bbc.com)."
+              },
+              {
+                "name": "exclude_domains",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of source domains to exclude."
+              },
+              {
+                "name": "source_ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of source IDs to include (as returned by the /news/sources endpoint)."
+              },
+              {
+                "name": "exclude_source_ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of source IDs to exclude."
+              },
+              {
+                "name": "language",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated language codes to filter results (e.g., en,es,fr). Supports 35+ languages."
+              },
+              {
+                "name": "published_before",
+                "value": "",
+                "type": "query",
+                "description": "Return articles published before this date/time (UTC). Formats: Y-m-d\\TH:i:s, Y-m-d\\TH:i, Y-m-d\\TH, Y-m-d, Y-m, Y."
+              },
+              {
+                "name": "published_after",
+                "value": "",
+                "type": "query",
+                "description": "Return articles published after this date/time (UTC). Formats: Y-m-d\\TH:i:s, Y-m-d\\TH:i, Y-m-d\\TH, Y-m-d, Y-m, Y."
+              },
+              {
+                "name": "published_on",
+                "value": "",
+                "type": "query",
+                "description": "Return articles published on this exact date (UTC). Format: Y-m-d."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort order for results. Options: published_on (chronological), relevance_score (by search relevance)."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return per page. Upper bound is determined by the current plan."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination. Maximum total of 20,000 results across all pages."
+              }
+            ]
+          },
+          "docs": "Search and filter the entire article database with comprehensive filtering options including search, categories, language, country, domain, and date range."
+        },
+        {
+          "info": {
+            "name": "Top Stories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.thenewsapi.com/v1/news/top",
+            "params": [
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Search query with advanced operators. Supports + (AND), | (OR), - (NOT), \"...\" (phrase), * (prefix), () (grouping), \\ (escape). URL-encode when using special characters."
+              },
+              {
+                "name": "search_fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to search. Options: title, description, keywords, main_text."
+              },
+              {
+                "name": "locale",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated country codes to filter articles by locale (e.g., us,ca,gb). Supports 50+ countries."
+              },
+              {
+                "name": "categories",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of categories to include. Options: general, science, sports, business, health, entertainment, tech, politics, food, travel."
+              },
+              {
+                "name": "exclude_categories",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of categories to exclude."
+              },
+              {
+                "name": "domains",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of source domains to include (e.g., techcrunch.com,bbc.com)."
+              },
+              {
+                "name": "exclude_domains",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of source domains to exclude."
+              },
+              {
+                "name": "source_ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of source IDs to include (as returned by the /news/sources endpoint)."
+              },
+              {
+                "name": "exclude_source_ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of source IDs to exclude."
+              },
+              {
+                "name": "language",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated language codes to filter results (e.g., en,es,fr). Supports 35+ languages."
+              },
+              {
+                "name": "published_before",
+                "value": "",
+                "type": "query",
+                "description": "Return articles published before this date/time (UTC). Formats: Y-m-d\\TH:i:s, Y-m-d\\TH:i, Y-m-d\\TH, Y-m-d, Y-m, Y."
+              },
+              {
+                "name": "published_after",
+                "value": "",
+                "type": "query",
+                "description": "Return articles published after this date/time (UTC). Formats: Y-m-d\\TH:i:s, Y-m-d\\TH:i, Y-m-d\\TH, Y-m-d, Y-m, Y."
+              },
+              {
+                "name": "published_on",
+                "value": "",
+                "type": "query",
+                "description": "Return articles published on this exact date (UTC). Format: Y-m-d."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort order for results. Options: published_on (chronological), relevance_score (by search relevance)."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return per page. Upper bound is determined by the current plan."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination. Maximum total of 20,000 results across all pages."
+              }
+            ]
+          },
+          "docs": "Retrieve live and historical top stories with advanced filtering by category, language, country, and full-text search with boolean operators."
+        },
+        {
+          "info": {
+            "name": "Headlines",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.thenewsapi.com/v1/news/headlines",
+            "params": [
+              {
+                "name": "locale",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated country codes to filter articles by locale (e.g., us,ca,gb). Supports 50+ countries."
+              },
+              {
+                "name": "domains",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of source domains to include (e.g., techcrunch.com,bbc.com)."
+              },
+              {
+                "name": "exclude_domains",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of source domains to exclude."
+              },
+              {
+                "name": "source_ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of source IDs to include (as returned by the /news/sources endpoint)."
+              },
+              {
+                "name": "exclude_source_ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of source IDs to exclude."
+              },
+              {
+                "name": "language",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated language codes to filter results (e.g., en,es,fr). Supports 35+ languages."
+              },
+              {
+                "name": "published_on",
+                "value": "",
+                "type": "query",
+                "description": "Return articles published on this exact date (UTC). Format: Y-m-d."
+              },
+              {
+                "name": "headlines_per_category",
+                "value": "",
+                "type": "query",
+                "description": "Number of headlines to return per category (1-10, default 6)."
+              },
+              {
+                "name": "include_similar",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include similar articles for each headline (default true)."
+              }
+            ]
+          },
+          "docs": "Get the latest headlines organized by category with optional similar article grouping. Available on Standard plan and above."
+        },
+        {
+          "info": {
+            "name": "Similar News",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.thenewsapi.com/v1/news/similar/:uuid",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "The unique UUID identifier of the article to find similar articles for."
+              },
+              {
+                "name": "categories",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of categories to include. Options: general, science, sports, business, health, entertainment, tech, politics, food, travel."
+              },
+              {
+                "name": "exclude_categories",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of categories to exclude."
+              },
+              {
+                "name": "domains",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of source domains to include (e.g., techcrunch.com,bbc.com)."
+              },
+              {
+                "name": "exclude_domains",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of source domains to exclude."
+              },
+              {
+                "name": "source_ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of source IDs to include (as returned by the /news/sources endpoint)."
+              },
+              {
+                "name": "exclude_source_ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of source IDs to exclude."
+              },
+              {
+                "name": "language",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated language codes to filter results (e.g., en,es,fr). Supports 35+ languages."
+              },
+              {
+                "name": "published_before",
+                "value": "",
+                "type": "query",
+                "description": "Return articles published before this date/time (UTC). Formats: Y-m-d\\TH:i:s, Y-m-d\\TH:i, Y-m-d\\TH, Y-m-d, Y-m, Y."
+              },
+              {
+                "name": "published_after",
+                "value": "",
+                "type": "query",
+                "description": "Return articles published after this date/time (UTC). Formats: Y-m-d\\TH:i:s, Y-m-d\\TH:i, Y-m-d\\TH, Y-m-d, Y-m, Y."
+              },
+              {
+                "name": "published_on",
+                "value": "",
+                "type": "query",
+                "description": "Return articles published on this exact date (UTC). Format: Y-m-d."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return per page. Upper bound is determined by the current plan."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination. Maximum total of 20,000 results across all pages."
+              }
+            ]
+          },
+          "docs": "Find articles related to a specific article by UUID with optional category, domain, language, and date filters."
+        },
+        {
+          "info": {
+            "name": "News by UUID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.thenewsapi.com/v1/news/uuid/:uuid",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "The unique UUID identifier of the article to retrieve."
+              }
+            ]
+          },
+          "docs": "Retrieve a specific article by its unique UUID identifier."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
