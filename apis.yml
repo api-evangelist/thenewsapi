@@ -19,6 +19,13 @@ created: '2026-06-13'
 modified: '2026-06-13'
 specificationVersion: '0.23'
 tags:
+  - News
+  - Articles
+  - Headlines
+  - Media
+  - Aggregation
+  - Real-Time
+tags_raw:
   - news
   - articles
   - headlines
@@ -32,6 +39,8 @@ apis:
   humanURL: https://www.thenewsapi.com
   baseURL: https://api.thenewsapi.com/v1
   tags:
+  - News
+  tags_raw:
   - news
   properties:
   - type: OpenAPI
@@ -56,6 +65,8 @@ apis:
   humanURL: https://www.thenewsapi.com
   baseURL: https://api.thenewsapi.com/v1
   tags:
+  - Sources
+  tags_raw:
   - sources
   properties:
   - type: OpenAPI
